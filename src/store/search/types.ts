@@ -3,11 +3,33 @@ export const LOADING_SEARCH_RESULT = "LOADING_SEARCH_RESULT";
 export const ERROR_SEARCHING_ORDER = "ERROR_SEARCHING_ORDER";
 export const SUCCESS_SEARCH_ORDER = "SUCCESS_SEARCH_ORDER";
 
+
+export enum OrderStatusEnum {
+    INPROGRESS,
+    READY_FOR_PICKUP,
+    CANCELLED,
+    SHIPPED
+}
+
+export enum OrderTypeEnum {
+    REVERSE,
+    FORWARD
+}
+
+export interface OrderSearchResult {
+    orderId: string,
+    orderDate: Date,
+    customerId: string,
+    orderType: OrderTypeEnum,
+    orderStatus: OrderStatusEnum,
+    amountDue: number
+}
+
 export interface SearchState {
     isLoading: boolean
     error: boolean
     errorMessage: string | null
-    orders: []
+    orders: OrderSearchResult[]
 }
 
 export interface SearchCriteria {

@@ -1,5 +1,6 @@
 import { SearchState, SearchActionTypes, SEARCH_ORDER, LOADING_SEARCH_RESULT, SUCCESS_SEARCH_ORDER, ERROR_SEARCHING_ORDER } from './types';
 
+
 const initialState: SearchState =  {
     isLoading: false,
     error: false,
