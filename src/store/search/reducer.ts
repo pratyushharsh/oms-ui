@@ -24,7 +24,7 @@ export function searchReducer(
             return {
                 ...state,
                 isLoading: false,
-                errorMessage: "Success"
+                orders: action.orders
             }
         case SEARCH_ORDER:
             return {

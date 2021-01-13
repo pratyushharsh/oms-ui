@@ -1,7 +1,8 @@
 import {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { searchOrders } from '../mock/mockApi';
 import { RootState } from '../store';
-import { LOADING_SEARCH_RESULT, SearchState, SUCCESS_SEARCH_ORDER } from '../store/search/types';
+import { ERROR_SEARCHING_ORDER, LOADING_SEARCH_RESULT, OrderSearchResult, SearchState, SUCCESS_SEARCH_ORDER } from '../store/search/types';
 
 
 
@@ -20,9 +21,17 @@ function OrderSearch() {
             type: LOADING_SEARCH_RESULT
         });
         await new Promise(r => setTimeout(r, 1000));
-        dispatch({
-            type: SUCCESS_SEARCH_ORDER
-        });
+        try {
+            var r: OrderSearchResult[] = await searchOrders("Refewf");
+            dispatch({
+                type: SUCCESS_SEARCH_ORDER,
+                orders: r
+            });
+        } catch (error) {
+            dispatch({
+                type: ERROR_SEARCHING_ORDER
+            });
+        }
     }
 
     if (state.isLoading) {

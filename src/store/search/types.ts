@@ -37,8 +37,13 @@ export interface SearchCriteria {
 }
 
 interface SearchOrderAction {
-    type: typeof SEARCH_ORDER | typeof LOADING_SEARCH_RESULT | typeof ERROR_SEARCHING_ORDER | typeof SUCCESS_SEARCH_ORDER
+    type: typeof SEARCH_ORDER | typeof LOADING_SEARCH_RESULT | typeof ERROR_SEARCHING_ORDER
     searchCriteria: SearchCriteria
 }
 
-export type SearchActionTypes = SearchOrderAction
+interface SuccessSearchOrdersAction {
+    type: typeof SUCCESS_SEARCH_ORDER
+    orders: OrderSearchResult[]
+}
+
+export type SearchActionTypes = SearchOrderAction | SuccessSearchOrdersAction
