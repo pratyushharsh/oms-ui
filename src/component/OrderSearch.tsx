@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchOrders } from '../mock/mockApi';
 import { RootState } from '../store';
 import { ERROR_SEARCHING_ORDER, LOADING_SEARCH_RESULT, OrderSearchResult, SearchState, SUCCESS_SEARCH_ORDER } from '../store/search/types';
-
+import OrderSearchTable from './OrderSearchTable';
 
 
 function OrderSearch() {
@@ -48,7 +48,12 @@ function OrderSearch() {
             <h1>Order Search</h1>
                 <input value={search} onChange={(e) => setSearch(e.target.value)} />
                 <button type='button' onClick={ handleSubmit }>Search</button>
-            <p>{ JSON.stringify(state) }</p>
+            {/* <p>{ JSON.stringify(state) }</p> */}
+            {/* <p>{ JSON.stringify(state.orders) }</p> */}
+            <OrderSearchTable data = {state.orders}/>
+
+
+
         </div>
     )
 }

@@ -5,10 +5,10 @@ export const SUCCESS_SEARCH_ORDER = "SUCCESS_SEARCH_ORDER";
 
 
 export enum OrderStatusEnum {
-    INPROGRESS,
-    READY_FOR_PICKUP,
-    CANCELLED,
-    SHIPPED
+    INPROGRESS = 'INPROGRESS',
+    READY_FOR_PICKUP = 'READY_FOR_PICKUP',
+    CANCELLED = 'CANCELLED',
+    SHIPPED = 'SHIPPED'
 }
 
 export enum OrderTypeEnum {
