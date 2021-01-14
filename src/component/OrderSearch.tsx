@@ -51,9 +51,6 @@ function OrderSearch() {
             {/* <p>{ JSON.stringify(state) }</p> */}
             {/* <p>{ JSON.stringify(state.orders) }</p> */}
             <OrderSearchTable data = {state.orders}/>
-
-
-
         </div>
     )
 }

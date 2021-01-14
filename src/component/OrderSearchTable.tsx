@@ -27,10 +27,6 @@ const useStyles = makeStyles((theme) => ({
     textInput: {
       height: theme.spacing(5)
     },
-  
-    
-  
-  
   }));
   
 
@@ -141,7 +137,7 @@ const handleInputChange = (event : any) => {
                               <TableCell align="left">{ JSON.stringify(row.orderDate)}</TableCell>
                               <TableCell align="left">{ JSON.stringify(row.customerId)}</TableCell>
                               <TableCell align="left">{ JSON.stringify(row.orderType)}</TableCell>
-                              <TableCell align="left"> <OrderStatus orderValue = { JSON.stringify(row.orderStatus) }/> </TableCell>
+                              <TableCell align="left"> <OrderStatus orderValue = { row.orderStatus }/> </TableCell>
                               <TableCell align="left">{ JSON.stringify(row.amountDue)}</TableCell>
                           </TableRow>
                       )))
