@@ -16,7 +16,6 @@ function OrderSearch() {
     const dispatch = useDispatch();
 
     const handleSubmit = async () => {
-        // console.log(JSON.stringify(state));
         dispatch({
             type: LOADING_SEARCH_RESULT
         });
