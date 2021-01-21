@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Grid, Tabs, Tab} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'; 
 import OrderDetailTab from './orderInfoTabs/OrderDetailTab'
-import ShipmentDetailTab from './orderInfoTabs/ShipmentDetailTab'
-import BillingDetailTab from './orderInfoTabs/BillingDetailTab'
+import ShipmentDetailTab from './orderInfoTabs/ShipmentDetailTab.tsx'
+import BillingDetailTab from './orderInfoTabs/BillingDetailTab.tsx'
 import SalesDetailTab from './orderInfoTabs/SalesDetailTab'
 import './OrderInfo.css'
 

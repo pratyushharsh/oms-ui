@@ -5,18 +5,17 @@ import './OrderInfoTabs.css'
 import CustomTextField from '../../basic/CustomTextField';
 import { OrderDetail } from '../../../model/order';
 
-
 const useStyles = makeStyles({
     inputContainer: {
         border: '1px solid rgb(167, 167, 167)'
     }
 })
 
-interface OrderDetailTabProps {
+interface BillingDetailTabProps {
     orderDetail: OrderDetail
 }
 
-function OrderDetailTab(props: OrderDetailTabProps) {
+function BillingDetailTab(props : BillingDetailTabProps) {
 
     const classes = useStyles();
 
@@ -24,25 +23,25 @@ function OrderDetailTab(props: OrderDetailTabProps) {
         <div>
             <Grid container spacing = {2} className = {classes.inputContainer}>
                 <Grid item xs = {6}>
-                    <CustomTextField label='Order ID' value={props.orderDetail.order_no} text={ 'Order Id' } />
+                    <CustomTextField label='First Name' value={props.orderDetail.billing_address.first_name} text={ 'First Name' } />
                 </Grid>
                 <Grid item xs = {6}>
-                    <CustomTextField label='Order Type' value={props.orderDetail._type} text={ 'Order Type' } />
+                    <CustomTextField label='Last Name' value={props.orderDetail.billing_address.last_name} text={ 'Last Name' } />
                 </Grid>
                 <Grid item xs = {6}>
-                    <CustomTextField label='Order Status' value={props.orderDetail.status} text={ 'Order Status' } />
-                </Grid>
-                <Grid item xs = {6}>  
-                    <CustomTextField label='Customer Name' value={props.orderDetail.customer_name} text={ 'Customer Name' } />
+                    <CustomTextField label='Phone' value={props.orderDetail.billing_address.phone} text={ 'Phone' } />
                 </Grid>
                 <Grid item xs = {6}>
-                    <CustomTextField label='Customer Email' value={props.orderDetail.customer_info.email} text={ 'Customer Email' } />
+                    <CustomTextField label='Email' value={props.orderDetail.billing_address.c_email} text={ 'Email' } />
                 </Grid>
                 <Grid item xs = {6}>
-                    <CustomTextField label='Contact' value={props.orderDetail.customer_info.customer_no} text={ 'Contact' } />
+                    <CustomTextField label='Area' value={props.orderDetail.billing_address.c_area} text={ 'Area' } />
                 </Grid>
                 <Grid item xs = {6}>
-                    <CustomTextField label='Order Type' value={props.orderDetail._type} text={ 'Order Type' } />
+                    <CustomTextField label='Address 1' value={props.orderDetail.billing_address.address1} text={ 'Address 1' } />
+                </Grid>
+                <Grid item xs = {6}>
+                    <CustomTextField label='Address 2' value={props.orderDetail.billing_address.address2} text={ 'Address 2' } />
                 </Grid>
                 <Grid item xs = {6}>
                     <CustomTextField label='City' value={props.orderDetail.billing_address.city} text={ 'City' } />
@@ -51,7 +50,7 @@ function OrderDetailTab(props: OrderDetailTabProps) {
                     <CustomTextField label='State' value={props.orderDetail.billing_address.state_code} text={ 'State' } />
                 </Grid>
                 <Grid item xs = {6}>
-                    <CustomTextField label='Country' value={props.orderDetail.billing_address.country_code} text={ 'Country' } />
+                    <CustomTextField label='Address' value={props.orderDetail.billing_address.c_addressType} text={ 'Address' } />
                 </Grid>
 
             </Grid>
@@ -59,4 +58,4 @@ function OrderDetailTab(props: OrderDetailTabProps) {
     )
 }
 
-export default OrderDetailTab
+export default BillingDetailTab
