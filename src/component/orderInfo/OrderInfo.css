@@ -1,0 +1,105 @@
+.order-info-container {
+  margin: 0 90px;
+  margin-top: 30px;
+  margin-bottom: 150px;
+}
+
+.request {
+  background-color: rgb(29, 90, 90);
+  color: white;
+  padding: 10px 7px;
+  font-size: 18px;
+  width: 25%;
+  border: 1px solid rgb(167, 167, 167);
+  outline: none;
+  font-weight: 500;
+}
+
+.request-detail {
+  border: 1px solid rgb(167, 167, 167);
+  padding: 10px;
+}
+
+.option-button-input {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.option-button-label {
+  cursor: pointer;
+}
+
+.request-table table {
+  width: 95%;
+  margin: auto;
+  border: 1px solid rgb(167, 167, 167);
+  border-collapse: collapse;
+  margin-bottom: 80px;
+}
+
+.request-table th,
+.request-table td {
+  padding: 7px;
+  border: 1px solid rgb(167, 167, 167);
+  border-collapse: collapse;
+  border-right: none;
+  border-left: none;
+}
+
+.request-table th {
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.request-table td {
+  font-size: 14px;
+  color: rgb(59, 59, 59);
+}
+
+.button-container {
+  text-align: right;
+}
+
+.button-container button {
+  margin: 0 12px 10px 0;
+  padding: 6px 11px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.button-cancel {
+  color: rgb(29, 90, 90);
+  border: 1px solid rgb(29, 90, 90);
+  background-color: rgb(230, 240, 240);
+}
+
+.button-proceed {
+  background-color: rgb(29, 90, 90);
+  color: white;
+  border: 1px solid rgb(29, 90, 90);
+}
+
+@media only screen and (max-width: 700px) {
+  .order-info-container {
+    margin: 0 30px;
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .order-info-container {
+    margin: 2.5px;
+    margin-top: 30px;
+  }
+
+  .request-detail {
+    padding: 5px;
+  }
+
+  .request-table table {
+    margin-bottom: 50px;
+  }
+}

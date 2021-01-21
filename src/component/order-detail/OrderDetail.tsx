@@ -7,6 +7,7 @@ import OrderTabs from './OrderTabs';
 
 
 
+
 function OrderDetail() {
 
     const [orderId, setorderId] = useState('')
@@ -34,6 +35,7 @@ function OrderDetail() {
             <hr />
             {/* <p>{JSON.stringify(state)}</p> */}
             { state.tabs.length > 0 ? <OrderTabs /> : <p>Search For the orders</p> }
+            
         </div>
     )
 }
