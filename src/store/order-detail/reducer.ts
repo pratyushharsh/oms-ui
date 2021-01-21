@@ -1,40 +1,43 @@
-import { OrderDetail } from './../../model/order';
-import { ERROR_ORDER_DETAIL, LOADING_ORDER_DETAIL, OrderDetailActionTypes, OrderDetailState, SEARCH_ORDER_DETAIL, SUCCESS_ORDER_DETAIL } from "./types";
+import { OrderDetailsTabs, TabActionTypes, TabsActionTypes } from "./types";
 
-const initialState: OrderDetailState = {
-    isLoading: false,
-    error: false,
-    errorMessage: null,
-    orderDetail: null
+/**
+ * This Screen will contain the list of order details in the tabbed view.
+ * We are setting up the screen
+ */
+const initialState: OrderDetailsTabs = {
+    tabs: [],
+    currentTab: 0
 }
 
 export function orderDetailReducer(
     state = initialState,
-    action: OrderDetailActionTypes
-): OrderDetailState {
+    action: TabActionTypes
+): OrderDetailsTabs {
     switch (action.type) {
-        case SEARCH_ORDER_DETAIL:
-            return state;
-        case LOADING_ORDER_DETAIL:
+        case TabsActionTypes.TAB_ADD_TAB:
+            const new_tabs = [...state.tabs, action.payload];
             return {
-                orderDetail: null,
-                isLoading: true,
-                error: false,
-                errorMessage: null
+                ...state,
+                tabs: new_tabs,
+                currentTab: new_tabs.length - 1
             };
-        case ERROR_ORDER_DETAIL:
+        case TabsActionTypes.TAB_DELETE_TAB:
+            const filterd_tab = state.tabs.filter(tab => tab.uuid !== action.uuid)
             return {
-                orderDetail: null,
-                isLoading: false,
-                error: true,
-                errorMessage: action.errorMessage
+                ...state,
+                tabs: filterd_tab,
+                currentTab: state.currentTab < filterd_tab.length ? state.currentTab : filterd_tab.length - 1
             };
-        case SUCCESS_ORDER_DETAIL:
+        case TabsActionTypes.TAB_SELECT_TAB:
             return {
-                orderDetail: action.orderDetail,
-                isLoading: false,
-                error: false,
-                errorMessage: null
+                ...state,
+                currentTab: action.index
+            };
+        case TabsActionTypes.TAB_UPDATE_TAB:
+            return {
+                ...state,
+                tabs: state.tabs.map((val, idx) => val.uuid === action.payload.uuid ? action.payload : val),
+                currentTab: state.tabs.findIndex(t => t.uuid === action.payload.uuid)
             };
         default:
             return state;

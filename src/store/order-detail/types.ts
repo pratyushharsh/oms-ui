@@ -1,36 +1,48 @@
 import { OrderDetail } from './../../model/order';
-export const SEARCH_ORDER_DETAIL = "SEARCH_ORDER_DETAIL";
-export const LOADING_ORDER_DETAIL = "LOADING_ORDER_DETAIL";
-export const ERROR_ORDER_DETAIL = "ERROR_ORDER_DETAIL";
-export const SUCCESS_ORDER_DETAIL = "SUCCESS_ORDER_DETAIL";
 
-export interface OrderDetailState {
+export interface OrderDetailsTabs {
+    tabs: OrderDetailTabState[],
+    currentTab: number,
+    editMode?: boolean
+}
+
+export interface OrderDetailTabState {
+    uuid: string,
     isLoading: boolean,
     error: boolean,
     errorMessage: string | null,
     orderDetail: OrderDetail | null
 }
 
-interface OrderDetailAction {
-    type: typeof SEARCH_ORDER_DETAIL,
-    orderId: string
+export enum TabsActionTypes {
+    TAB_INIT_TAB = "TAB_INIT_TAB",
+    TAB_ADD_TAB = "TAB_ADD_TAB",
+    TAB_SELECT_TAB = "TAB_SELECT_TAB",
+    TAB_DELETE_TAB = "TAB_DELETE_TAB",
+    TAB_UPDATE_TAB = "TAB_UPDATE_TAB"
 }
 
-interface LoadingOrderDetailAction {
-    type: typeof LOADING_ORDER_DETAIL
+export interface AddNewTabAction {
+    type: typeof TabsActionTypes.TAB_ADD_TAB,
+    payload: OrderDetailTabState
 }
 
-interface ErrorOrderDetailAction {
-    type: typeof ERROR_ORDER_DETAIL,
-    errorMessage: string
+export interface SelectTabAction {
+    type: typeof TabsActionTypes.TAB_SELECT_TAB,
+    index: number
 }
 
-interface SuccessOrderDetailAction {
-    type: typeof SUCCESS_ORDER_DETAIL,
-    orderDetail: OrderDetail
+export interface DeleteTabAction {
+    type: typeof TabsActionTypes.TAB_DELETE_TAB,
+    uuid: string
 }
 
-export type OrderDetailActionTypes = OrderDetailAction
-    | LoadingOrderDetailAction
-    | ErrorOrderDetailAction
-    | SuccessOrderDetailAction
+export interface UpdateTabAction {
+    type: typeof TabsActionTypes.TAB_UPDATE_TAB,
+    payload: OrderDetailTabState
+}
+
+export type TabActionTypes = AddNewTabAction
+    | SelectTabAction
+    | DeleteTabAction
+    | UpdateTabAction

@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Dashboard from './component/Dashboard';
 import OrderSearch from './component/OrderSearch';
-import OrderDetail from './component/OrderDetail';
+import OrderDetail from './component/order-detail/OrderDetail';
 
 function App() {
   return (
