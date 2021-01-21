@@ -2,6 +2,8 @@ import React from 'react'
 import { Grid} from '@material-ui/core' 
 import { makeStyles } from '@material-ui/core/styles'; 
 import './OrderInfoTabs.css'
+import CustomTextField from '../../basic/CustomTextField';
+import { OrderDetail } from '../../../model/order';
 
 
 const useStyles = makeStyles({
@@ -10,7 +12,11 @@ const useStyles = makeStyles({
     }
 })
 
-function OrderDetailTab(props) {
+interface OrderDetailTabProps {
+    orderDetail: OrderDetail
+}
+
+function OrderDetailTab(props: OrderDetailTabProps) {
 
     const classes = useStyles();
 
@@ -18,7 +24,8 @@ function OrderDetailTab(props) {
         <div>
             <Grid container spacing = {2} className = {classes.inputContainer}>
                 <Grid item xs = {6}>
-                    <input type="text" className="input-box"  placeholder="Order ID" value = {props.orderDetail.order_no} disabled/>
+                    <input type="text" className="input-box" placeholder="Order ID" value={props.orderDetail.order_no} disabled />
+                    <CustomTextField label='Order ID' value={props.orderDetail.order_no} text={ 'Order Id' } />
                 </Grid>
                 <Grid item xs = {6}>
                     <input type="text" className="input-box"  placeholder="Order Type" value = {props.orderDetail._type} disabled/>

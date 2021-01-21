@@ -108,7 +108,7 @@ function OrderInfo(props) {
                             </Grid>
                             <Grid item xs = {4}>
                                 <input type="radio" name="option" id = "cancel" className = 'option-button-input'/>
-                                <label htmlFor="cancel" className = 'option-button-label'>Cancel</label>
+                                <label htmlFor="cancel" className = 'option-button-label' >Cancel</label>
                             </Grid>
                         </Grid>
                         

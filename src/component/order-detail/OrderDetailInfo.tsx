@@ -12,7 +12,7 @@ function OrderDetailInfo(props: any) {
 
     const shipmentTableBody = props.src.shipments.map( (data: { shipment_id: any; shipping_status: any; shipment_total: any; tax_total: any; seq: any; shipping_method: { name: any }; c_tracking_link: any }) => ([data.shipment_id, data.shipping_status, data.shipment_total, data.tax_total, data.seq, data.shipping_method.name, data.c_tracking_link]))
 
-    const paymentDetailBody = props.src.payment_instruments.map( (data: { c_transactionId: any; amount: any; payment_method_id: any; payment_card: any;  }) => ([data.c_transactionId, data.amount, '2/12', data.payment_method_id, data.payment_card.holder , data.payment_card.card_type, data.payment_card.masked_number, `${ data.payment_card.expiration_month}/${ data.payment_card.expiration_year}`]))
+    const paymentDetailBody = props.src.payment_instruments.map( (data: { c_transactionId: any; amount: any; payment_method_id: any; payment_card: any;  }) => ([data.c_transactionId, data.amount, '2/12', data?.payment_method_id, data?.payment_card?.holder , data?.payment_card?.card_type, data?.payment_card?.masked_number, `${ data?.payment_card?.expiration_month}/${ data?.payment_card?.expiration_year}`]))
 
 
     return (
