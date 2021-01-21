@@ -74,6 +74,7 @@ const handleInputChange = (event : any) => {
         
         <Box p = {3} style = {{ textAlign: 'left'}}>
             
+            
             <FormControl variant="outlined"  >
             
                 <Select
@@ -162,12 +163,12 @@ const handleInputChange = (event : any) => {
                 </Table>
             </TableContainer>
             <TablePagination 
-            page = {page}
-            rowsPerPageOptions ={[3, 5, 10]}
-            count = { statusValue === 'All' ?   rows.filter( row => row.orderId.includes(search)  || JSON.stringify(row.orderDate).includes(search) || JSON.stringify(row.customerId).includes(search) ||  JSON.stringify(row.orderType).includes(search) ||   JSON.stringify(row.orderStatus).includes(search)|| JSON.stringify(row.amountDue).includes(search)).length :  rows.filter( row => row.orderId.includes(search)  || JSON.stringify(row.orderDate).includes(search) || JSON.stringify(row.customerId).includes(search) ||  JSON.stringify(row.orderType).includes(search) ||   JSON.stringify(row.orderStatus).includes(search)|| JSON.stringify(row.amountDue).includes(search) ).filter( row => JSON.stringify(row.orderStatus) === statusValue).length  }
-            rowsPerPage = {rowsPerPage}
-            onChangePage = { onChangePage}
-            onChangeRowsPerPage = { onChangeRowsPerPage }
+                page = {page}
+                rowsPerPageOptions ={[3, 5, 10]}
+                count = { statusValue === 'All' ?   rows.filter( row => row.orderId.includes(search)  || JSON.stringify(row.orderDate).includes(search) || JSON.stringify(row.customerId).includes(search) ||  JSON.stringify(row.orderType).includes(search) ||   JSON.stringify(row.orderStatus).includes(search)|| JSON.stringify(row.amountDue).includes(search)).length :  rows.filter( row => row.orderId.includes(search)  || JSON.stringify(row.orderDate).includes(search) || JSON.stringify(row.customerId).includes(search) ||  JSON.stringify(row.orderType).includes(search) ||   JSON.stringify(row.orderStatus).includes(search)|| JSON.stringify(row.amountDue).includes(search) ).filter( row => JSON.stringify(row.orderStatus) === statusValue).length  }
+                rowsPerPage = {rowsPerPage}
+                onChangePage = { onChangePage}
+                onChangeRowsPerPage = { onChangeRowsPerPage }
             />
         </Box>
 
