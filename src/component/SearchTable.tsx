@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Typography, Box, FormControl, Select, MenuItem, FormHelperText, TextField, Table, TableContainer, TableBody, TableCell, TableHead, TableRow, TablePagination } from '@material-ui/core';
@@ -38,7 +38,19 @@ function SearchTable(props: SearchTableProps) {
 
     const classes = useStyles();
 
-    return (
+    // State Of Pagination
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
+
+    function onChangePage(event: React.MouseEvent<HTMLButtonElement> | null, page: number) {
+        setPage(page);
+    }
+
+    function onChangeRowsPerPage(event: React.ChangeEvent<HTMLInputElement>) {
+        setRowsPerPage(Number(event.target.value));
+    }
+
+        return (
         <div className={classes.root}>
             <Paper elevation={3} style={{ borderBottom: '1.5px solid #c3c1c1', borderRadius: '8px' }}>
                 <Box p={3} style={{ borderBottom: '2px solid #c3c1c1' }}>
@@ -58,6 +70,14 @@ function SearchTable(props: SearchTableProps) {
                             </TableBody>
                         </Table>
                     </TableContainer>
+                        <TablePagination
+                            page={ page }
+                            rowsPerPageOptions={[5, 10, 15, 20]}
+                            count={props.tableBody.length}
+                            rowsPerPage={rowsPerPage}
+                            onChangePage={onChangePage}
+                            onChangeRowsPerPage = { onChangeRowsPerPage }
+                        />
                 </Box>
             </Paper>
         </div>
