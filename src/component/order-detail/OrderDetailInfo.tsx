@@ -26,7 +26,7 @@ function OrderDetailInfo(props: any) {
             <SearchTable tableName = {'ITEM LIST'} tableHeader = {['SKU ID', 'Description', 'Unit Price', 'Quantity', 'Ordered_Price', 'Discount Code', 'STATUS' ]} tableBody = { itemTableBody } />
             {/* <SearchTable tableName = {'Shipment Detail'} tableHeader = {['Shipment ID', 'Status', 'Shipment Total', 'Tax', 'No of Items', 'Partner', 'tracking url' ]} tableBody = { shipmentTableBody } /> */}
             <SearchTable tableName={'Payment Detail'} tableHeader={['Transaction ID', 'Amount', 'Date', 'Mode', 'Holder Name', 'Card Type', 'Number', 'Expiration Date']} tableBody={paymentDetailBody} />
-            <ReactJson src={props.src} />
+            {/* <ReactJson src={props.src} /> */}
         </div>
     )
 }

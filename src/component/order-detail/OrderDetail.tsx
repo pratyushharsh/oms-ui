@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { searchOrderDetail, selectTab } from '../../store/order-detail';
 import { OrderDetailsTabs } from '../../store/order-detail/types';
+import OrderDetailSearch from './OrderDetailSearch';
 import OrderTabs from './OrderTabs';
 
 
@@ -25,14 +26,17 @@ function OrderDetail() {
         } else {
             dispatch(searchOrderDetail(orderId));
         }
+        setorderId('');
     }
 
     return (
         <div>
-            <h1>Order Detail</h1>
-            <input value={orderId} onChange={(e) => setorderId(e.target.value)} />
-            <button type='button' onClick={ handleSearchOrder }>Search</button>
-            <hr />
+            <OrderDetailSearch
+                value={orderId}
+                onChange={(e) => setorderId(e.target.value)}
+                onClick={handleSearchOrder}
+            />
+            
             {/* <p>{JSON.stringify(state)}</p> */}
             { state.tabs.length > 0 ? <OrderTabs /> : <p>Search For the orders</p> }
         </div>

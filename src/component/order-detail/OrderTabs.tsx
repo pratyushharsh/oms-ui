@@ -110,7 +110,7 @@ function OrderDetailTabPanelData(props: OrderDetailTabPanelDataProps) {
     return (
         <div>
             <SearchTable tableName={"ITEM"} tableHeader={headers} tableBody={ body }/>
-            <ReactJson src={props.order} />
+            {/* <ReactJson src={props.order} /> */}
         </div>);
 }
 
