@@ -66,7 +66,7 @@ function SearchTable(props: SearchTableProps) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {props.tableBody.map((t, idx) => <TableRowData row={t} />) }
+                                    {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} />) }
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -91,7 +91,7 @@ interface TableRowDataProps {
 function TableRowData(props: TableRowDataProps) {
     return (
         <TableRow hover={true}>
-            { props.row.map((t, idx) => <TableCell align="left"> {t} </TableCell>) }
+            { props.row.map((t, idx) => <TableCell key={ `tr-${idx}` } align="left"> {t} </TableCell>) }
         </TableRow>
     )
 }

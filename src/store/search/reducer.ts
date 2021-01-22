@@ -12,7 +12,6 @@ export function searchReducer(
     state = initialState,
     action: SearchActionTypes
 ): SearchState {
-    console.log(`Lgieg reughregre ${JSON.stringify(action)}`);
     switch (action.type) {
         case LOADING_SEARCH_RESULT:
             return {

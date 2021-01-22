@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchOrders } from '../mock/mockApi';
-import { RootState } from '../store';
-import { ERROR_SEARCHING_ORDER, LOADING_SEARCH_RESULT, OrderSearchResult, SearchState, SUCCESS_SEARCH_ORDER } from '../store/search/types';
-import OrderSearchTable from './OrderSearchTable';
+import { searchOrdersApi } from '../../api/orderDetailSearch';
+import { RootState } from '../../store';
+import { ERROR_SEARCHING_ORDER, LOADING_SEARCH_RESULT, OrderSearchResult, SearchState, SUCCESS_SEARCH_ORDER } from '../../store/search/types';
+import OrderSearchTable from '../OrderSearchTable';
 
 
 function OrderSearch() {
@@ -21,7 +21,7 @@ function OrderSearch() {
         });
         await new Promise(r => setTimeout(r, 1000));
         try {
-            var r: OrderSearchResult[] = await searchOrders("Refewf");
+            var r: OrderSearchResult[] = await searchOrdersApi('ftyud');
             dispatch({
                 type: SUCCESS_SEARCH_ORDER,
                 orders: r
@@ -33,24 +33,15 @@ function OrderSearch() {
         }
     }
 
-    if (state.isLoading) {
-        return (
-            <>
-                <p>Loading the result.</p>
-            </>);
-        
-    }
-
-
     return (
-        <div>
+        <>
             <h1>Order Search</h1>
                 <input value={search} onChange={(e) => setSearch(e.target.value)} />
                 <button type='button' onClick={ handleSubmit }>Search</button>
             {/* <p>{ JSON.stringify(state) }</p> */}
             {/* <p>{ JSON.stringify(state.orders) }</p> */}
-            <OrderSearchTable data = {state.orders}/>
-        </div>
+            {state.isLoading ? "Loading Search Result................" : <OrderSearchTable orders={state.orders} />}
+        </>
     )
 }
 

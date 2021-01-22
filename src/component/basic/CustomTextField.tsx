@@ -13,7 +13,6 @@ function CustomTextField(props: CustomTextFieldProps) {
         <TextField
             fullWidth
             label= { props.label }
-            id="outlined-margin-dense"
             helperText={props.helperText}
             value= {props.value}
             margin="dense"

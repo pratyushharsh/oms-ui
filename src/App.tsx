@@ -3,7 +3,7 @@ import './App.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Dashboard from './component/Dashboard';
-import OrderSearch from './component/OrderSearch';
+import OrderSearch from './component/orderSearch/OrderSearch';
 import OrderDetail from './component/order-detail/OrderDetail';
 import MyAppBar from './component/app-bar/MyAppBar';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';

@@ -20,9 +20,10 @@ export interface OrderSearchResult {
     orderId: string,
     orderDate: Date,
     customerId: string,
-    orderType: OrderTypeEnum,
-    orderStatus: OrderStatusEnum,
-    amountDue: number
+    customerName: string;
+    orderType: string,
+    orderStatus: string,
+    orderTotal: number
 }
 
 export interface SearchState {
