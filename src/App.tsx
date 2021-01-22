@@ -23,8 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
       ...theme.mixins.toolbar,
     },
     content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
+      padding: theme.spacing(1.5),
     },
   }),
 );
@@ -44,7 +43,7 @@ function App() {
           <li><Link to="/order">Order Detail</Link></li>
         </nav> */}
         <MyAppBar />
-        <main className={classes.content} >
+        <main className={classes.content}>
           <div className={classes.toolbar} />
           <Route exact path="/">
             <Dashboard />

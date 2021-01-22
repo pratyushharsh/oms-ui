@@ -20,7 +20,7 @@ function OrderSearchTable(props: OrderSearchTableProps) {
   ];
   const searchData = props.orders.map((data, idx) => {
     return [
-      <Link to={`/order?orderId=${data.orderId}`} >{data.orderId}</Link>,
+      data.orderId,
       data.orderDate,
       data.customerId,
       data.customerName,
@@ -29,9 +29,11 @@ function OrderSearchTable(props: OrderSearchTableProps) {
       data.orderTotal] 
   })
 
+  const onRowClick = 'history.push(`/order?orderId=${t[0]}`)';
+
   return (
     <div>
-      <SearchTable tableName={'ORDER SEARCH RESULT'} tableHeader={tableHeader} tableBody={searchData}/>
+      <SearchTable tableName={'ORDER SEARCH RESULT'} tableHeader={tableHeader} tableBody={searchData} onRowClick={ onRowClick }/>
     </div>
   )
 }

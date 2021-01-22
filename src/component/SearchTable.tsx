@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Typography, Box, FormControl, Select, MenuItem, FormHelperText, TextField, Table, TableContainer, TableBody, TableCell, TableHead, TableRow, TablePagination } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,11 +33,13 @@ interface SearchTableProps {
     tableName: string;
     tableHeader: any[];
     tableBody: any[];
+    onRowClick?: string;
 }
 
 function SearchTable(props: SearchTableProps) {
 
     const classes = useStyles();
+    const history = useHistory();
 
     // State Of Pagination
     const [page, setPage] = useState(0);
@@ -65,8 +68,8 @@ function SearchTable(props: SearchTableProps) {
                                     {props.tableHeader.map((t, idx) => <TableCell key={idx} align="left" style={{ color: 'gray', fontWeight: 600 }}> { t } </TableCell>) }
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
-                                    {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} />) }
+                                <TableBody>
+                                    {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick) }}/>) }
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -86,11 +89,12 @@ function SearchTable(props: SearchTableProps) {
 
 interface TableRowDataProps {
     row: any[]
+    onClick?: any;
 }
 
 function TableRowData(props: TableRowDataProps) {
     return (
-        <TableRow hover={true}>
+        <TableRow hover={true} onClick={props.onClick}>
             { props.row.map((t, idx) => <TableCell key={ `tr-${idx}` } align="left"> {t} </TableCell>) }
         </TableRow>
     )
