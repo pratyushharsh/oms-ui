@@ -4,16 +4,18 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Dashboard from './component/Dashboard';
 import OrderSearch from './component/OrderSearch';
 import OrderDetail from './component/order-detail/OrderDetail';
+import MyAppBar from './component/app-bar/MyAppBar';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <nav className="nav-style">
+        {/* <nav className="nav-style">
           <li><Link to="/">Dashboard</Link></li>
           <li><Link to="/search">Order Search</Link></li>
           <li><Link to="/order">Order Detail</Link></li>
-        </nav>
+        </nav> */}
+        <MyAppBar />
         <Route exact path="/">
           <Dashboard />
         </Route>

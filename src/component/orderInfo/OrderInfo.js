@@ -76,18 +76,18 @@ function OrderInfo(props) {
                     
                         <Grid item xs = {12}>
                             <Tabs value = {selectedTab} onChange = {handleTabChange}>
-                                <Tab label = 'Order Detail' className = {classes.orderInfoButton} />
-                                <Tab label = 'Sales Detail' className = {classes.orderInfoButton}/>
-                                <Tab label = 'Shipping' className = {classes.orderInfoButton}/>
-                                <Tab label = 'Billing' className = {classes.orderInfoButton}/>                       
+                                {/* <Tab label = 'Order Detail' className = {classes.orderInfoButton} />
+                                <Tab label = 'Sales Detail' className = {classes.orderInfoButton}/> */}
+                                <Tab label = 'Shipping Address' className = {classes.orderInfoButton}/>
+                                <Tab label = 'Billing Address' className = {classes.orderInfoButton}/>                       
                             </Tabs> 
                         </Grid>
 
                     <Grid item xs = {12} className = {classes.grid}>
-                        {selectedTab === 0 && <OrderDetailTab orderDetail = {props.orderDetail}/>}
-                        { selectedTab === 1 && <SalesDetailTab orderDetail = {props.orderDetail}/>}
-                        {selectedTab === 2 &&  <ShipmentDetailTab orderDetail = {props.orderDetail}/>}
-                        {selectedTab === 3 &&  <BillingDetailTab orderDetail = {props.orderDetail}/> }
+                        {/* {selectedTab === 0 && <OrderDetailTab orderDetail = {props.orderDetail}/>}
+                        { selectedTab === 1 && <SalesDetailTab orderDetail = {props.orderDetail}/>} */}
+                        {selectedTab === 0 &&  <ShipmentDetailTab orderDetail = {props.orderDetail}/>}
+                        {selectedTab === 1 &&  <BillingDetailTab orderDetail = {props.orderDetail}/> }
                     </Grid>
 
                     </Grid>
@@ -109,6 +109,18 @@ function OrderInfo(props) {
                             <Grid item xs = {4}>
                                 <input type="radio" name="option" id = "cancel" className = 'option-button-input'/>
                                 <label htmlFor="cancel" className = 'option-button-label' >Cancel</label>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <input type="radio" name="option" id="ship" className='option-button-input' />
+                                <label htmlFor="ship" className='option-button-label' >Shipping Address</label>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <input type="radio" name="option" id="bill" className='option-button-input' />
+                                <label htmlFor="bill" className='option-button-label' >Billing Address</label>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <input type="radio" name="option" id="delivery" className='option-button-input' />
+                                <label htmlFor="delivery" className='option-button-label' >Change Delivery Date</label>
                             </Grid>
                         </Grid>
                         

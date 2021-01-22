@@ -90,7 +90,7 @@ interface TableRowDataProps {
 
 function TableRowData(props: TableRowDataProps) {
     return (
-        <TableRow>
+        <TableRow hover={true}>
             { props.row.map((t, idx) => <TableCell align="left"> {t} </TableCell>) }
         </TableRow>
     )

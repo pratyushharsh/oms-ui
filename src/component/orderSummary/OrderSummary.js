@@ -57,7 +57,6 @@ function OrderSummary(props) {
         status: props.orderDetail.shipping_status,
         paymentMethod: props.orderDetail.payment_instruments[0].payment_method_id,
         balanceDue: props.orderDetail.payment_status === 'paid' ? 0 : `${props.orderDetail.currency} ${props.orderDetail.product_total}`,
-        
     }
 
     return (
