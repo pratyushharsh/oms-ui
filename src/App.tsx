@@ -44,7 +44,7 @@ function App() {
         </nav> */}
         <MyAppBar />
         <main className={classes.content}>
-          <div className={classes.toolbar} />
+            <div className={classes.toolbar} />
           <Route exact path="/">
             <Dashboard />
           </Route>
