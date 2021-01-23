@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Typography, Box, FormControl, Select, MenuItem, FormHelperText, TextField, Table, TableContainer, TableBody, TableCell, TableHead, TableRow, TablePagination } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import Chip from '@material-ui/core/Chip';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +69,7 @@ function SearchTable(props: SearchTableProps) {
                                     {props.tableHeader.map((t, idx) => <TableCell key={idx} align="left" style={{ color: 'gray', fontWeight: 600 }}> { t } </TableCell>) }
                                 </TableRow>
                             </TableHead>
-                                <TableBody>
+                            <TableBody>
                                     {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick) }}/>) }
                             </TableBody>
                         </Table>
@@ -94,8 +95,8 @@ interface TableRowDataProps {
 
 function TableRowData(props: TableRowDataProps) {
     return (
-        <TableRow hover={true} onClick={props.onClick}>
-            { props.row.map((t, idx) => <TableCell key={ `tr-${idx}` } align="left"> {t} </TableCell>) }
+        <TableRow hover={true} onClick={props.onClick} >
+            { props.row.map((t, idx) => <TableCell key={`tr-${idx}`} align="left"> {t} </TableCell>)}
         </TableRow>
     )
 }
