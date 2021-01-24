@@ -11,6 +11,7 @@ const initialState: OrderDetailsTabs = {
 
 export function orderDetailReducer(
     state = initialState,
+
     action: TabActionTypes
 ): OrderDetailsTabs {
     switch (action.type) {

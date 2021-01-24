@@ -7,6 +7,11 @@ import OrderSearch from './component/orderSearch/OrderSearch';
 import OrderDetail from './component/order-detail/OrderDetail';
 import MyAppBar from './component/app-bar/MyAppBar';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
+import SignIn from './component/login/Login';
+import {VerifyAuthenticated} from "./component/VerifyAuthenticeted";
+import {useSelector} from "react-redux";
+import {RootState} from "./store";
+import {AuthState} from "./store/auth";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -23,7 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
       ...theme.mixins.toolbar,
     },
     content: {
-      padding: theme.spacing(1.5),
+      flexGrow: 1,
+      padding: theme.spacing(3),
     },
   }),
 );
@@ -32,29 +38,37 @@ const useStyles = makeStyles((theme: Theme) =>
 function App() {
 
   const classes = useStyles();
+    const state: AuthState = useSelector(
+        (state: RootState) => state.auth
+
+    );
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <BrowserRouter>
-        {/* <nav className="nav-style">
-          <li><Link to="/">Dashboard</Link></li>
-          <li><Link to="/search">Order Search</Link></li>
-          <li><Link to="/order">Order Detail</Link></li>
-        </nav> */}
-        <MyAppBar />
+          { state.user && <MyAppBar/>}
         <main className={classes.content}>
             <div className={classes.toolbar} />
           <Route exact path="/">
-            <Dashboard />
+              <VerifyAuthenticated>
+                <Dashboard />
+              </VerifyAuthenticated>
           </Route>
           <Route exact path="/search">
+              <VerifyAuthenticated>
             <OrderSearch />
+                  </VerifyAuthenticated>
           </Route>
           <Route exact path="/order">
+              <VerifyAuthenticated>
             <OrderDetail />
+              </VerifyAuthenticated>
           </Route>
         </main>
+      <Route exact path="/login">
+          <SignIn />
+      </Route>
       </BrowserRouter>
     </div>
   );

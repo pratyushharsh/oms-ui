@@ -17,6 +17,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SearchIcon from '@material-ui/icons/Search';
 import DetailsIcon from '@material-ui/icons/Details';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {useDispatch} from "react-redux";
+import {logout} from "../../store/auth";
+
 
 
 const drawerWidth = 200;
@@ -99,6 +103,7 @@ function MyAppBar() {
 
     const classes = useStyles();
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -112,6 +117,10 @@ function MyAppBar() {
         setOpen(!open);
     }
 
+    function handleLogout() {
+        dispatch(logout());
+    }
+
 
     return (
         <div>
@@ -123,12 +132,15 @@ function MyAppBar() {
                     <IconButton onClick={toggleDrawer} className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
+                    <Typography variant="h6" className={classes.title} noWrap>
                         {routeName(location.pathname)}
                     </Typography>
                     <Button component={Link} to="/" color="inherit">Dashboard</Button>
                     <Button component={Link} to="/search" color="inherit">OrderSearch</Button>
-                    <Button component={Link} to="/order" color="inherit">OrderDetail</Button> 
+                    <Button component={Link} to="/order" color="inherit">OrderDetail</Button>
+                    <IconButton onClick={handleLogout}>
+                        <ExitToAppIcon />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
             <Drawer

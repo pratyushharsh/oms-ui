@@ -7,6 +7,8 @@ import BillingDetailTab from './orderInfoTabs/BillingDetailTab.tsx'
 import SalesDetailTab from './orderInfoTabs/SalesDetailTab'
 import DialogBox from '../dialog-box/DialogBox.tsx'
 import './OrderInfo.css'
+import SearchTable from '../SearchTable'
+
 
 const useStyles = makeStyles({
     orderInfoButton : {
@@ -49,36 +51,52 @@ function OrderInfo(props) {
         setOptionValue(event.target.value);
     }
 
+    const paymentDetailBody = props.orderDetail.payment_instruments.map((data, idx) => ([data.c_transactionId, data.amount, '2/12', data?.payment_method_id, data?.payment_card?.holder, data?.payment_card?.card_type, data?.payment_card?.masked_number, `${data?.payment_card?.expiration_month}/${data?.payment_card?.expiration_year}`]))
+
     const classes = useStyles();
-
-    const req_data = [
-        {
-            itemId: '463728',
-            description: 'Blue T-Shirt',
-            returnQty : '1',
-            quantity: '1',
-            reason: 'Damaged'
-        },{
-            itemId: '463728',
-            description: 'Blue T-Shirt',
-            returnQty : '1',
-            quantity: '1',
-            reason: 'Damaged'
-        },{
-            itemId: '463728',
-            description: 'Blue T-Shirt',
-            returnQty : '1',
-            quantity: '1',
-            reason: 'Damaged'
-        }
-    ]
-
 
     return (
         <div className=" order-info-container">
-            <Grid container spacing = {2} >
-                <Grid  item xs = {12} lg = {6}>   
+            <Grid container spacing={2} >
+                <Grid item xs={12} md={12} lg={12}>
+                    <button className="request" >Request</button>
+                    <div className="request-detail">
 
+                        <Grid container className={classes.optionButton}>
+                            <Grid item xs={2}>
+                                <input type="radio" name="option" id="return" value="return" defaultChecked className='option-button-input' onClick={handleOptionChange} />
+                                <label htmlFor="return" className='option-button-label'>Return</label>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <input type="radio" name="option" id="exchange" value="exchange" className='option-button-input' onClick={handleOptionChange} />
+                                <label htmlFor="exchange" className='option-button-label'>Exchange</label>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <input type="radio" name="option" id="cancel" value="cancel" className='option-button-input' onClick={handleOptionChange} />
+                                <label htmlFor="cancel" className='option-button-label' >Cancel</label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input type="radio" name="option" id="ship" className='option-button-input' onClick={handleOptionChange} />
+                                <label htmlFor="ship" className='option-button-label' >Shipping Address</label>
+                            </Grid>
+
+                            <Grid item xs={3}>
+                                <input type="radio" name="option" id="delivery" className='option-button-input' onClick={handleOptionChange} />
+                                <label htmlFor="delivery" className='option-button-label' >Change Delivery Date</label>
+                            </Grid>
+                        </Grid>
+
+                        <DialogBox openDialogBox={openDialogBox} setOpenDialogBox={setOpenDialogBox} optionValue={optionValue} orderDetail={props.orderDetail} />
+
+                        <div className="button-container">
+                            <button className="button-cancel">Cancel</button>
+                            <button className="button-proceed" onClick={() => { setOpenDialogBox(true) }}>Proceed</button>
+                        </div>
+
+                    </div>
+                </Grid>
+
+                <Grid  item xs = {12} lg = {6}>   
                     <Grid container direction = 'column' spacing = {0} >
                     
                         <Grid item xs = {12}>
@@ -100,80 +118,9 @@ function OrderInfo(props) {
                     </Grid>
 
                 </Grid>
-                <Grid item xs = {12} md = {12} lg = {6}>
-                    <button className="request" >Request</button>
-                    <div className = "request-detail">
-                        
-                        <Grid container className = {classes.optionButton}>
-                            <Grid item xs = {4}>
-                                <input type="radio" name="option" id = "return" value = "return" defaultChecked className = 'option-button-input' onClick = {handleOptionChange} />
-                                <label htmlFor="return" className = 'option-button-label'>Return</label>
-                            </Grid>
-                            <Grid item xs = {4}>
-                                <input type="radio" name="option" id = "exchange" value = "exchange" className = 'option-button-input' onClick = {handleOptionChange} />
-                                <label htmlFor="exchange" className = 'option-button-label'>Exchange</label>
-                            </Grid>
-                            <Grid item xs = {4}>
-                                <input type="radio" name="option" id = "cancel" value = "cancel" className = 'option-button-input' onClick = {handleOptionChange} />
-                                <label htmlFor="cancel" className = 'option-button-label' >Cancel</label>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <input type="radio" name="option" id="ship" className='option-button-input' onClick = {handleOptionChange} />
-                                <label htmlFor="ship" className='option-button-label' >Shipping Address</label>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <input type="radio" name="option" id="bill" className='option-button-input' onClick = {handleOptionChange} />
-                                <label htmlFor="bill" className='option-button-label' >Billing Address</label>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <input type="radio" name="option" id="delivery" className='option-button-input' onClick = {handleOptionChange} />
-                                <label htmlFor="delivery" className='option-button-label' >Change Delivery Date</label>
-                            </Grid>
-                        </Grid>
 
-                        <DialogBox openDialogBox = {openDialogBox} setOpenDialogBox = {setOpenDialogBox} optionValue = { optionValue }  orderDetail = {props.orderDetail}/>
-                        
-                        <Grid container >
-                            <Grid item xs = {12}>
-                                <div className="request-table">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th><input type="checkbox"/></th>
-                                                <th>SKU ID</th>
-                                                <th>Description</th>
-                                                <th>Return Qty</th>
-                                                <th>Quantity</th>
-                                                <th>Reason</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            {
-                                                req_data.map( (data, index) => (
-                                                    <tr key={index}>
-                                                        <td><input type="checkbox"/></td>
-                                                        <td>{ data.itemId }</td>
-                                                        <td>{ data.description }</td>
-                                                        <td>{ data.returnQty }</td>
-                                                        <td>{ data.quantity }</td>
-                                                        <td>{ data.reason }</td>
-                                                    </tr>
-                                                ))
-                                            }
-                                        </tbody>
-
-                                    </table>
-                                </div>
-                            </Grid>
-                        </Grid>
-                        
-                        <div className="button-container">
-                            <button className ="button-cancel">Cancel</button>
-                            <button className ="button-proceed" onClick = { () => { setOpenDialogBox(true)}}>Proceed</button>
-                        </div>
-
-                    </div>
+                <Grid item xs={12} lg={6}>
+                    <SearchTable tableName={'Payment Detail'} tableHeader={['Transaction ID', 'Amount', 'Date', 'Mode', 'Holder Name', 'Card Type', 'Number', 'Expiration Date']} tableBody={paymentDetailBody} />
                 </Grid>
             </Grid>
             

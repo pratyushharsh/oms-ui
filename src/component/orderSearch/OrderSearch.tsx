@@ -34,14 +34,14 @@ function OrderSearch() {
     }
 
     return (
-        <>
+        <div>
             <h1>Order Search</h1>
                 <input value={search} onChange={(e) => setSearch(e.target.value)} />
                 <button type='button' onClick={ handleSubmit }>Search</button>
             {/* <p>{ JSON.stringify(state) }</p> */}
             {/* <p>{ JSON.stringify(state.orders) }</p> */}
             {state.isLoading ? "Loading Search Result................" : <OrderSearchTable orders={state.orders} />}
-        </>
+        </div>
     )
 }
 

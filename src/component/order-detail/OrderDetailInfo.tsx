@@ -6,11 +6,14 @@ import OrderTracker from '../orderTracker/OrderTracker'
 import SearchTable from '../SearchTable'
 import HomeIcon from '@material-ui/icons/Home';
 import ReactJson from 'react-json-view'
+import { TextField } from 'material-ui'
 
 
 function OrderDetailInfo(props: any) {
 
-    const itemTableBody = props.src.product_items.map((data: { item_id: any; item_text: any; base_price: any; quantity: any; price_after_item_discount: any }) => ([data.item_id, data.item_text, data.base_price, data.quantity, data.price_after_item_discount, 'Discount', <HomeIcon />]))
+    const currency = props.src.currency
+
+    const itemTableBody = props.src.product_items.map((data: { item_id: any; item_text: any; base_price: any; quantity: any; price_after_item_discount: any }) => ([data.item_id, data.item_text, `${currency} ${data.base_price}`, data.quantity, 0 , `${currency} ${data.price_after_item_discount}`, `${currency} ${data.quantity * data.price_after_item_discount}`]))
 
     const shipmentTableBody = props.src.shipments.map( (data: { shipment_id: any; shipping_status: any; shipment_total: any; tax_total: any; seq: any; shipping_method: { name: any }; c_tracking_link: any }) => ([data.shipment_id, data.shipping_status, data.shipment_total, data.tax_total, data.seq, data.shipping_method.name, data.c_tracking_link]))
 
@@ -21,11 +24,11 @@ function OrderDetailInfo(props: any) {
         <div>
             {/* <Tabs orderDetail = {props.src}/> */}
             <OrderTracker  />
-            <OrderSummary orderDetail = {props.src}/>
+            <OrderSummary orderDetail={props.src} />
+            <SearchTable tableName={'ITEM LIST'} tableHeader={['SKU ID', 'Description', 'Unit Price', 'Ordered Qty', 'Returned Qty', 'Sale Price', 'Total Amount']} tableBody={itemTableBody} />
             <OrderInfo orderDetail = {props.src}/>
-            <SearchTable tableName = {'ITEM LIST'} tableHeader = {['SKU ID', 'Description', 'Unit Price', 'Quantity', 'Ordered_Price', 'Discount Code', 'STATUS' ]} tableBody = { itemTableBody } />
+            
             {/* <SearchTable tableName = {'Shipment Detail'} tableHeader = {['Shipment ID', 'Status', 'Shipment Total', 'Tax', 'No of Items', 'Partner', 'tracking url' ]} tableBody = { shipmentTableBody } /> */}
-            <SearchTable tableName={'Payment Detail'} tableHeader={['Transaction ID', 'Amount', 'Date', 'Mode', 'Holder Name', 'Card Type', 'Number', 'Expiration Date']} tableBody={paymentDetailBody} />
             {/* <ReactJson src={props.src} /> */}
         </div>
     )

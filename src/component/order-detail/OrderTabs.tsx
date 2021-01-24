@@ -35,10 +35,9 @@ function TabPanel(props: TabPanelProps) {
 
     return (
         <div
-            role="tabpanel"
             hidden={value !== index}
-            id={`scrollable-force-tabpanel-${index}`}
-            aria-labelledby={`scrollable-force-tab-${index}`}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
             {value === index && (
