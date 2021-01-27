@@ -239,6 +239,7 @@ export interface PaymentCard {
 }
 
 export interface PaymentInstrument {
+    c_transactionId: number;
     _type: string;
     amount: number;
     c_authcode: string;

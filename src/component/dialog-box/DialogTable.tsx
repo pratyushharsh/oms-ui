@@ -5,6 +5,7 @@ import { Typography, Box, FormControl, Select, MenuItem, FormHelperText, TextFie
 import { useHistory } from 'react-router-dom';
 
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -34,12 +35,15 @@ interface DialogTableProps {
     tableHeader: any[];
     tableBody: any[];
     onRowClick?: string;
+    
 }
 
 function DialogTable(props: DialogTableProps) {
 
     const classes = useStyles();
     const history = useHistory();
+
+    
 
      return (
         <div className={classes.root}>
@@ -57,8 +61,8 @@ function DialogTable(props: DialogTableProps) {
                                 </TableRow>
                             </TableHead>
                                 <TableBody>
-                                    {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick) }}/>) }
-                            </TableBody>
+                                    {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick)  }} />) }
+                                </TableBody>
                         </Table>
                     </TableContainer>
                         
@@ -71,13 +75,19 @@ function DialogTable(props: DialogTableProps) {
 interface TableRowDataProps {
     row: any[]
     onClick?: any;
+    
 }
 
 function TableRowData(props: TableRowDataProps) {
+
+    
+
     return (
-        <TableRow hover={true} onClick={props.onClick}>
-            { props.row.map((t, idx) => <TableCell key={ `tr-${idx}` } align="left"> {t} </TableCell>) }
-        </TableRow>
+        
+            <TableRow hover={true} onClick={props.onClick}>
+                { props.row.map((t, idx) => <TableCell key={ `tr-${idx}` } align="left"> {t} </TableCell> ) }
+            </TableRow>
+        
     )
 }
 

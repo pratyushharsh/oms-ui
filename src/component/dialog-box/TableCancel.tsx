@@ -8,6 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 
 
+
 function TableCheckBox(){
     return(
         <Checkbox
@@ -54,6 +55,7 @@ function TableCancel(props: TableCancelProps) {
         setReason(event.target.value );
     } 
 
+   
 
     const { orderDetail } = props;
     const tableBody = orderDetail.product_items.filter( item => item.c_cancellable_ind === true ).map( data => ([ <TableCheckBox/>, data.item_id, data.item_text,  <TextField id="outlined-basic" label="Enter no of items" variant="outlined" size="small" type = "number"/>, data.quantity, <TableSelectBox reason = {reason} handleReasonChange = {handleReasonChange}/> ]))

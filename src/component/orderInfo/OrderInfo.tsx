@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Grid, Tabs, Tab} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'; 
 import OrderDetailTab from './orderInfoTabs/OrderDetailTab'
-import ShipmentDetailTab from './orderInfoTabs/ShipmentDetailTab.tsx'
-import BillingDetailTab from './orderInfoTabs/BillingDetailTab.tsx'
+import ShipmentDetailTab from './orderInfoTabs/ShipmentDetailTab'
+import BillingDetailTab from './orderInfoTabs/BillingDetailTab'
 import SalesDetailTab from './orderInfoTabs/SalesDetailTab'
-import DialogBox from '../dialog-box/DialogBox.tsx'
+import DialogBox from '../dialog-box/DialogBox'
 import './OrderInfo.css'
 import SearchTable from '../SearchTable'
+import { OrderDetail } from '../../model/order';
 
 
 const useStyles = makeStyles({
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
         padding: '25px 10px 10px 15px',
         fontSize: '20px',
         textTransform: 'uppercase',
-        fontWeight: '500',
+        fontWeight: 500,
         display: 'flex',
         marginBottom: '40px'
     },
@@ -37,17 +38,21 @@ const useStyles = makeStyles({
     }
 })
 
-function OrderInfo(props) {
+interface OrderInfoProps{
+    orderDetail: OrderDetail
+}
+
+function OrderInfo(props : OrderInfoProps) {
 
     const [selectedTab, setSelectedTab] = useState(0);
     const [optionValue, setOptionValue] = useState('return')
     const [openDialogBox, setOpenDialogBox] = useState(false);
 
-    const handleTabChange = (event, newValue) => {
+    const handleTabChange = (event : any, newValue : number) => {
         setSelectedTab(newValue);
     }
 
-    const handleOptionChange = (event) => {
+    const handleOptionChange = (event : any) => {
         setOptionValue(event.target.value);
     }
 
@@ -57,7 +62,7 @@ function OrderInfo(props) {
 
     return (
         <div className=" order-info-container">
-            <Grid container spacing={2} >
+            <Grid container spacing={1} >
                 <Grid item xs={12} md={12} lg={12}>
                     <button className="request" >Request</button>
                     <div className="request-detail">
@@ -108,19 +113,19 @@ function OrderInfo(props) {
                             </Tabs> 
                         </Grid>
 
-                    <Grid item xs = {12} className = {classes.grid}>
-                        {/* {selectedTab === 0 && <OrderDetailTab orderDetail = {props.orderDetail}/>}
-                        { selectedTab === 1 && <SalesDetailTab orderDetail = {props.orderDetail}/>} */}
-                        {selectedTab === 0 &&  <ShipmentDetailTab orderDetail = {props.orderDetail}/>}
-                        {selectedTab === 1 &&  <BillingDetailTab orderDetail = {props.orderDetail}/> }
-                    </Grid>
+                        <Grid item xs = {12} className = {classes.grid}>
+                            {/* {selectedTab === 0 && <OrderDetailTab orderDetail = {props.orderDetail}/>}
+                            { selectedTab === 1 && <SalesDetailTab orderDetail = {props.orderDetail}/>} */}
+                            {selectedTab === 0 &&  <ShipmentDetailTab orderDetail = {props.orderDetail}/>}
+                            {selectedTab === 1 &&  <BillingDetailTab orderDetail = {props.orderDetail}/> }
+                        </Grid>
 
                     </Grid>
 
                 </Grid>
 
                 <Grid item xs={12} lg={6}>
-                    <SearchTable tableName={'Payment Detail'} tableHeader={['Transaction ID', 'Amount', 'Date', 'Mode', 'Holder Name', 'Card Type', 'Number', 'Expiration Date']} tableBody={paymentDetailBody} />
+                    <SearchTable tableName={'Payment Detail'} tableHeader={['Transaction ID', 'Amount', 'Date', 'Mode', 'Holder Name', 'Card Type', 'Number', 'Expiration Date']} tableBody={paymentDetailBody}  />
                 </Grid>
             </Grid>
             

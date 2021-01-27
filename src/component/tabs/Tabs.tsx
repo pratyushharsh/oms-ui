@@ -1,8 +1,13 @@
 import React from 'react'
 import Tab from './Tab.js'
 import './Tab.css'
+import { OrderDetail } from '../../model/order.js'
 
-function Tabs(props : any) {
+interface TabsProps{
+    orderDetail: OrderDetail
+}
+
+function Tabs(props : TabsProps) {
     return (
         <div className="button-list">
             <Tab />

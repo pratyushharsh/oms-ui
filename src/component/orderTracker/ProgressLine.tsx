@@ -1,7 +1,10 @@
 import React from 'react'
 
+interface ProgressLineProps{
+    color: string
+}
 
-function ProgressLine(props) {
+function ProgressLine(props : ProgressLineProps) {
 
     const styles = {
 
