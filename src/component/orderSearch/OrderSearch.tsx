@@ -37,30 +37,14 @@ function OrderSearch() {
 
     return (
         <div>
-            {/* <h1>Order Search</h1>
-                <input value={search} onChange={(e) => setSearch(e.target.value)} />
-                <button type='button' onClick={ handleSubmit }>Search</button> */}
-
-            <Grid container spacing = {2}>
-                <Grid item xs = {4}>
-                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Order Id"}/>
-                </Grid>
-                <Grid item xs = {4}>
-                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Date Range"}/>
-                </Grid>
-                <Grid item xs = {4}>
-                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Customer Id"}/>
-                </Grid>
-                <Grid item xs = {4}>
-                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Customer Name"}/>
-                </Grid>
-                <Grid item xs = {4}>
-                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Order Type"}/>
-                </Grid>
-                <Grid item xs = {4}>
-                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Order Status"}/>
-                </Grid>
-            </Grid>
+            <h1>Order Search</h1>
+            <label htmlFor="order-id">Order Id</label>
+            <input id="order-id" value={search} onChange={(e) => setSearch(e.target.value)} />
+            <label htmlFor="cust-id">CUstomer Id</label>
+            <input id="cust-id" value={search} onChange={(e) => setSearch(e.target.value)} />
+            <label htmlFor="order-id">Order Id</label>
+            <input value={search} onChange={(e) => setSearch(e.target.value)} />
+                <button type='button' onClick={ handleSubmit }>Search</button>
             {/* <p>{ JSON.stringify(state) }</p> */}
             {/* <p>{ JSON.stringify(state.orders) }</p> */}
             {state.isLoading ? "Loading Search Result................" : <OrderSearchTable orders={state.orders} />}

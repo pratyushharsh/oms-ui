@@ -36,9 +36,9 @@ function DialogBox(props : DialogBoxProps) {
                 { optionValue === 'cancel' && <TableCancel orderDetail = {orderDetail} /> }
             </DialogContent>
 
-            <DialogActions style = {{ margin: '20px' }}>
+            {/* <DialogActions style = {{ margin: '20px' }}>
                 <Button variant="outlined" size="medium" >Submit</Button>
-            </DialogActions>
+            </DialogActions> */}
             
             
         </Dialog>

@@ -60,12 +60,11 @@ function DialogTable(props: DialogTableProps) {
                                     {props.tableHeader.map((t, idx) => <TableCell key={idx} align="left" style={{ color: 'gray', fontWeight: 600 }}> { t } </TableCell>) }
                                 </TableRow>
                             </TableHead>
-                                <TableBody>
-                                    {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick)  }} />) }
-                                </TableBody>
+                            <TableBody>
+                                {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick)  }} />) }
+                            </TableBody>
                         </Table>
                     </TableContainer>
-                        
                 </Box>
             </Paper>
         </div>

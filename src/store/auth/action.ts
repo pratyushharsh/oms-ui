@@ -1,4 +1,5 @@
-import {AuthActionTypes} from "./types";
+import { AuthActionTypes } from "./types";
+
 
 export const loginUser = (username: string, password: string) => (dispatch: any) => {
     if (username === 'admin' && password === '1234') {
