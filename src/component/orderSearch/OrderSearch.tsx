@@ -36,7 +36,12 @@ function OrderSearch() {
     return (
         <div>
             <h1>Order Search</h1>
-                <input value={search} onChange={(e) => setSearch(e.target.value)} />
+            <label htmlFor="order-id">Order Id</label>
+            <input id="order-id" value={search} onChange={(e) => setSearch(e.target.value)} />
+            <label htmlFor="cust-id">CUstomer Id</label>
+            <input id="cust-id" value={search} onChange={(e) => setSearch(e.target.value)} />
+            <label htmlFor="order-id">Order Id</label>
+            <input value={search} onChange={(e) => setSearch(e.target.value)} />
                 <button type='button' onClick={ handleSubmit }>Search</button>
             {/* <p>{ JSON.stringify(state) }</p> */}
             {/* <p>{ JSON.stringify(state.orders) }</p> */}
