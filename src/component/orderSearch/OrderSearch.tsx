@@ -4,6 +4,8 @@ import { searchOrdersApi } from '../../api/orderDetailSearch';
 import { RootState } from '../../store';
 import { ERROR_SEARCHING_ORDER, LOADING_SEARCH_RESULT, OrderSearchResult, SearchState, SUCCESS_SEARCH_ORDER } from '../../store/search/types';
 import OrderSearchTable from '../OrderSearchTable';
+import OrderSearchBar from './OrderSearchBar'
+import { Grid } from '@material-ui/core'
 
 
 function OrderSearch() {
@@ -35,9 +37,30 @@ function OrderSearch() {
 
     return (
         <div>
-            <h1>Order Search</h1>
+            {/* <h1>Order Search</h1>
                 <input value={search} onChange={(e) => setSearch(e.target.value)} />
-                <button type='button' onClick={ handleSubmit }>Search</button>
+                <button type='button' onClick={ handleSubmit }>Search</button> */}
+
+            <Grid container spacing = {2}>
+                <Grid item xs = {4}>
+                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Order Id"}/>
+                </Grid>
+                <Grid item xs = {4}>
+                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Date Range"}/>
+                </Grid>
+                <Grid item xs = {4}>
+                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Customer Id"}/>
+                </Grid>
+                <Grid item xs = {4}>
+                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Customer Name"}/>
+                </Grid>
+                <Grid item xs = {4}>
+                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Order Type"}/>
+                </Grid>
+                <Grid item xs = {4}>
+                    <OrderSearchBar onChange={(e) => setSearch(e.target.value)} onClick={ handleSubmit } value={search} placeholder = {"Search Using Order Status"}/>
+                </Grid>
+            </Grid>
             {/* <p>{ JSON.stringify(state) }</p> */}
             {/* <p>{ JSON.stringify(state.orders) }</p> */}
             {state.isLoading ? "Loading Search Result................" : <OrderSearchTable orders={state.orders} />}

@@ -268,7 +268,12 @@ export interface ReturnItem {
     product_items: ReturnProductItem[];
 }
 
+export interface CancellationItems {
+    product_items: ProductItem[];
+}
+
 export interface OrderDetail {
+    cancellation_items: CancellationItems[];
     _type: string;
     isVIP: boolean;
     notes: Notes;
