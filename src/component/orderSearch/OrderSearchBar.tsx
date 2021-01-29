@@ -35,6 +35,8 @@ interface OrderSearchProps {
     onClick?: MouseEventHandler;
     value?: string;
     placeholder?: string;
+    name?: string;
+    type?: string;
 }
 
 export default function OrderSearch(props: OrderSearchProps) {
@@ -51,6 +53,8 @@ export default function OrderSearch(props: OrderSearchProps) {
                 inputProps={{ 'aria-label': `${props.placeholder}` }}
                 onChange={props.onChange}
                 value={props.value}
+                type = {props.type}
+                name = { props.name}
             />
             <IconButton type="button" className={classes.iconButton} aria-label="search" onClick={props.onClick}>
                 <SearchIcon />
