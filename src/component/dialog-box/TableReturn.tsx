@@ -74,7 +74,7 @@ function TableReturn(props: TableReturnProps) {
         return found_item[0].quantity;
     }
 
-    const cancelled_items_id = orderDetail.cancellation_items[0].product_items.map( item => item.product_id)
+    const cancelled_items_id = orderDetail.hasOwnProperty('cancellation_items') === true ? orderDetail.cancellation_items[0].product_items.map( item => item.product_id) : [];
     const item_can_be_returned = orderDetail.product_items.filter(item => item.c_returnable_ind).filter(item => !cancelled_items_id.includes(item.product_id) || (cancelled_items_id.includes(item.product_id) && item.quantity > findQuantity(item.product_id)));
 
     const formik = useFormik({
