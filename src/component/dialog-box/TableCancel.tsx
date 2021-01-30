@@ -31,24 +31,26 @@ function TableCheckBox(props: TableCheckBoxProps){
 
 interface TableSelectBoxProps{
     reason : string,
-    handleReasonChange: any
+    handleReasonChange: any,
+    name: string
 }
 
 function TableSelectBox(props : TableSelectBoxProps){
 
-    const { reason, handleReasonChange} = props;
+    const { reason, handleReasonChange, name} = props;
 
     return(
         <Select
     
         value={reason}
         onChange={ handleReasonChange}
+        name = {name}
         
       >
         
-        <MenuItem value={'Defected'} >Defected</MenuItem>
-        <MenuItem value={'Defected'}>Defected</MenuItem>
-        <MenuItem value={'Defected'}>Defected</MenuItem>
+        <MenuItem value={'Defected1'} >Defected1</MenuItem>
+        <MenuItem value={'Defected2'}>Defected2</MenuItem>
+        <MenuItem value={'Defected3'}>Defected3</MenuItem>
       </Select> 
     )
 }
@@ -60,10 +62,10 @@ interface TableCancelProps {
 
 function TableCancel(props: TableCancelProps) {
 
-    const [reason, setReason] = React.useState('Defected');
-    const handleReasonChange = (event : any) => {
-        setReason(event.target.value );
-    } 
+    // const [reason, setReason] = React.useState('Defected');
+    // const handleReasonChange = (event : any) => {
+    //     setReason(event.target.value );
+    // } 
 
    const { orderDetail } = props;
 
@@ -81,7 +83,8 @@ function TableCancel(props: TableCancelProps) {
             items: item_can_be_cancelled.map((itm, idx) => {
                 return {
                     selected: false,
-                    quantity: 0
+                    quantity: 0,
+                    reason: ''
                 }
             })
         },
@@ -90,10 +93,65 @@ function TableCancel(props: TableCancelProps) {
         },
     });
 
+
+    let cancelled_amt = 0;
+    let cancelled_tax_amt = 0;
+    let cancelled_discount_amt = 0;
+
+    const cancelled_products = item_can_be_cancelled.map( (item, idx) => {
+        
+        const findVariation = (key : string) => {
+            const findKey = item.variation_attributes.filter(variation => variation.display_name === key)
+            return findKey[0].display_value
+        }
+
+        if(formik.values.items[idx].selected === true){
+
+            cancelled_amt += item.base_price;
+            cancelled_tax_amt += item.tax
+            cancelled_discount_amt += (item.base_price - item.price_after_item_discount)
+
+            return {
+                brand: item.brand,
+                title: item.product_name,
+                shipment_id: item.shipment_id,
+                product_id: item.product_id,
+                product_name:item.product_name,
+                quantity: formik.values.items[idx].quantity,
+                reason_code: formik.values.items[idx].reason,
+                color: findVariation('Color'),
+                size: findVariation('Size'),
+                price: item.price
+                
+            }
+        }
+    })
+    
+    const cancelled_items = {
+        order_no : orderDetail.order_no,
+        c_currency_code: orderDetail.currency,
+        email_id: orderDetail.customer_info.email,
+        create_date: orderDetail.creation_date,
+        order_initiate_loc_id: orderDetail.c_initiate_loc_id,
+        c_cancellation_id: orderDetail.c_sscid,
+        c_cancelled_amount: cancelled_amt,
+        c_cancelled_discount_amount: cancelled_discount_amt,
+        c_cancelled_tax_amount: cancelled_tax_amt,
+        c_partial_cancellation_flag: false,
+        product_items: cancelled_products,
+        
+    }
+
+    
+    const handleSubmit = () => {
+        console.table(cancelled_items)
+    }
+
     const tableBody = item_can_be_cancelled.map( (data, idx) => {
         
         const selName = `items[${idx}].selected`
         const selQty = `items[${idx}].quantity`
+        const selReason = `items[${idx}].reason`
 
         return ([
             <TableCheckBox
@@ -114,7 +172,7 @@ function TableCancel(props: TableCancelProps) {
                 value={formik.values.items[idx].quantity}
             />,
             data.quantity,
-            <TableSelectBox reason={reason} handleReasonChange={handleReasonChange} />
+            <TableSelectBox reason={formik.values.items[idx].reason}  handleReasonChange={formik.handleChange} name={selReason} />
         ]);
     })
 
@@ -122,7 +180,7 @@ function TableCancel(props: TableCancelProps) {
         <div>
             <form onSubmit = {formik.handleSubmit}>
             <DialogTable tableName = {'Cancel'} tableHeader = {['Selected Items','SKU ID', 'Description', 'Cancel', 'Quantity', 'Reason' ]} tableBody = {tableBody} />
-            <Button type='submit'>Submit</Button>
+            <Button type='submit' onClick = {handleSubmit}>Submit</Button>
             </form>
         </div>
     )
