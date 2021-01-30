@@ -81,7 +81,7 @@ function OrderTabs(props: any) {
             >
                 {state.tabs.map((t, idx) => <MyOrderTab key={idx} onClick={() => handleSelect(idx)} onClose={() => handleClose(t.uuid)} data={t} />)}
             </Tabs>
-            { state.tabs.map((t, idx) => <TabPanel key={idx} value={state.currentTab} index={idx} data={t}> {t.orderDetail && <OrderDetailInfo src={t.orderDetail} /> } </TabPanel>)}
+            { state.tabs.map((t, idx) => <TabPanel key={idx} value={state.currentTab} index={idx} data={t}> {t.orderDetail && <OrderDetailInfo orderDetail={t.orderDetail} /> } </TabPanel>)}
             
         </div>
     )

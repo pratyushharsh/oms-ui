@@ -56,7 +56,25 @@ function OrderInfo(props : OrderInfoProps) {
         setOptionValue(event.target.value);
     }
 
-    const paymentDetailBody = props.orderDetail.payment_instruments.map((data, idx) => ([data.c_transactionId, data.amount, '2/12', data?.payment_method_id, data?.payment_card?.holder, data?.payment_card?.card_type, data?.payment_card?.masked_number, `${data?.payment_card?.expiration_month}/${data?.payment_card?.expiration_year}`]))
+    const paymentDetailHeader = [
+        'Mode',
+        'Card Type',
+        'Number',
+        'Expiration Date',
+        'Holder Name',
+        'Amount',
+        'Date',        
+    ]
+
+    const paymentDetailBody = props.orderDetail.payment_instruments.map((data, idx) => ([
+        data?.payment_method_id,
+        data?.payment_card?.card_type,
+        data?.payment_card?.masked_number,
+        `${data?.payment_card?.expiration_month}/${data?.payment_card?.expiration_year}`,
+        data?.payment_card?.holder,
+        data.amount,
+        '2/12',
+    ]))
 
     const classes = useStyles();
 
@@ -125,7 +143,7 @@ function OrderInfo(props : OrderInfoProps) {
                 </Grid>
 
                 <Grid item xs={12} lg={6}>
-                    <SearchTable tableName={'Payment Detail'} tableHeader={['Transaction ID', 'Amount', 'Date', 'Mode', 'Holder Name', 'Card Type', 'Number', 'Expiration Date']} tableBody={paymentDetailBody}  />
+                    <SearchTable tableName={'Payment Detail'} tableHeader={paymentDetailHeader} tableBody={paymentDetailBody}  />
                 </Grid>
             </Grid>
             

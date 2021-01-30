@@ -6,7 +6,6 @@ import { ERROR_SEARCHING_ORDER, LOADING_SEARCH_RESULT, OrderSearchResult, Search
 import OrderSearchTable from '../OrderSearchTable';
 import OrderSearchBar from './OrderSearchBar'
 import { Grid } from '@material-ui/core'
-import { useFormik } from 'formik'
 
 
 function OrderSearch() {
@@ -16,41 +15,23 @@ function OrderSearch() {
         (state: RootState) => state.search
     );
 
-    const dispatch = useDispatch();
+    
 
-    const handleSubmit = async () => {
-        dispatch({
-            type: LOADING_SEARCH_RESULT
-        });
-        await new Promise(r => setTimeout(r, 1000));
-        try {
-            var r: OrderSearchResult[] = await searchOrdersApi('ftyud');
-            dispatch({
-                type: SUCCESS_SEARCH_ORDER,
-                orders: r
-            });
-        } catch (error) {
-            dispatch({
-                type: ERROR_SEARCHING_ORDER
-            });
-        }
-    }
-
-    const formik = useFormik({
-        initialValues: {
+    // const formik = useFormik({
+    //     initialValues: {
             
-            orderId : '',
-            orderDate : '',
-            customerId: '',
-            customerName: '',
-            orderType: '',
-            orderStatus: ''
+    //         orderId : '',
+    //         orderDate : '',
+    //         customerId: '',
+    //         customerName: '',
+    //         orderType: '',
+    //         orderStatus: ''
             
-        },
-        onSubmit: (values) => {
-            console.log( formik.values);
-        },
-    });
+    //     },
+    //     onSubmit: (values) => {
+    //         console.log( formik.values);
+    //     },
+    // });
 
     return (
         <div>
@@ -64,15 +45,10 @@ function OrderSearch() {
                 <button type='button' onClick={ handleSubmit }>Search</button> */}
 
             <Grid container spacing = {2}>
-                <Grid item xs = {4}>
-                    <OrderSearchBar
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        onClick={handleSubmit}
-                        placeholder = {'Search Using Order Id'}
-                    />
+                <Grid item xs = {12}>
+                    <OrderSearchBar />
                 </Grid>
-                <Grid item xs = {4}>
+                {/* <Grid item xs = {4}>
                     <OrderSearchBar
                         value={formik.values.orderDate}
                         onChange={formik.handleChange}
@@ -118,7 +94,7 @@ function OrderSearch() {
                         placeholder = {'Search Using Order Status'}
                         name = {'orderStatus'}
                     />
-                </Grid>
+                </Grid> */}
             </Grid>
 
             {/* <p>{ JSON.stringify(state) }</p> */}

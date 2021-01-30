@@ -2,7 +2,9 @@ import React from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'; 
 import './OrderSummary.css'
-import {OrderDetail} from "../../model/order";
+import { OrderDetail } from "../../model/order";
+import { dateFormatter} from '../../utils/formatter'
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles({
     orderSummaryTitle: {
@@ -49,6 +51,14 @@ interface OrderSummaryProps {
     orderDetail: OrderDetail
 }
 
+function ShippingAddressComponent() {
+    return (
+        <div>
+            <p>jyg</p>
+            <p>tfygiu</p>
+        </div>);
+}
+
 function OrderSummary(props: OrderSummaryProps) {
 
     const classes = useStyles();
@@ -69,18 +79,19 @@ function OrderSummary(props: OrderSummaryProps) {
         ['Order Status', props.orderDetail.status],
         ['Order Type', props.orderDetail._type],
         ['Tracking Url', <a href={props.orderDetail?.shipments[0]?.c_tracking_link} target={'new'}>Track</a>],
-        ['Delivery Type', 'PlaceHolder'],
+        ['Delivery Type', 'Truck Delivery'],
         ['Payment Due', props.orderDetail.payment_status === 'paid' ? 0 : `${props.orderDetail.currency} ${props.orderDetail.product_total}`],
-        ['Shipping Type', 'PlaceHolder'],
+        ['Shipping Type', 'Regular'],
         ['Order Total', `${props.orderDetail.currency} ${props.orderDetail.product_total}`],
-        ['Expected Delivery Date', 'PlaceHolder'],
-        ['Tax Amount', 'PlaceHolder'],
-        ['Create Date', props.orderDetail.creation_date],
-        ['Originated Store', 'PlaceHolder'],
+        ['Delivery Date', dateFormatter(props.orderDetail.creation_date)],
+        ['Tax Amount', '0.00'],
+        ['Create Date', dateFormatter(props.orderDetail.creation_date)],
+        ['Originated Store', '101'],
         ['Customer Name', props.orderDetail.customer_name,],
-        ['Fulfilment Store', 'PlaceHolder'],
+        ['Fulfilment Store/WH', '8094'],
         ['Phone Number', props.orderDetail.customer_info.customer_no],
         ['Email', props.orderDetail.customer_info.email],
+        ['Shipping Address', <ShippingAddressComponent />]
     ]
 
     return (
@@ -95,7 +106,8 @@ function OrderSummary(props: OrderSummaryProps) {
                 </Grid>    
             </Grid>
 
-            <Grid container className = {classes.orderSummary}>
+            <div className={classes.orderSummary}>
+            <Grid container>
                 { orderProps.map((t, idx) => {
                     return (
                         <Grid container item xs = {12} sm = {12} md = {6} key={`prop-${t[0]}-${idx}`}>
@@ -108,7 +120,8 @@ function OrderSummary(props: OrderSummaryProps) {
                         </Grid>
                     );
                 })}
-             </Grid>
+            </Grid>
+            </div>
         </div>
     )
 }
