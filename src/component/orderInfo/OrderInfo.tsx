@@ -12,6 +12,15 @@ import { OrderDetail } from '../../model/order';
 
 
 const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > *': {
+            margin: '40px 45px',
+            // minWidth: theme.spacing(175),
+
+        },
+    },
     orderInfoButton : {
         backgroundColor: 'rgb(29, 90, 90)',
         color: 'white',
@@ -79,7 +88,7 @@ function OrderInfo(props : OrderInfoProps) {
     const classes = useStyles();
 
     return (
-        <div className=" order-info-container">
+        <div className={classes.root}>
             <Grid container spacing={1} >
                 <Grid item xs={12} md={12} lg={12}>
                     <button className="request" >Request</button>
@@ -91,7 +100,7 @@ function OrderInfo(props : OrderInfoProps) {
                                 <label htmlFor="return" className='option-button-label'>Return</label>
                             </Grid>
                             <Grid item xs={2}>
-                                <input type="radio" name="option" id="exchange" value="exchange" className='option-button-input' onClick={handleOptionChange} />
+                                <input type="radio" name="option" id="exchange" value="return" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="exchange" className='option-button-label'>Exchange</label>
                             </Grid>
                             <Grid item xs={2}>

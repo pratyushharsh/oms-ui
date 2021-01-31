@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter, Route, Router, Link } from 'react-router-dom';
-import Dashboard from './component/Dashboard';
+import Dashboard from './component/dashboard/Dashboard';
 import OrderSearch from './component/orderSearch/OrderSearch';
 import OrderDetail from './component/order-detail/OrderDetail';
 import MyAppBar from './component/app-bar/MyAppBar';
