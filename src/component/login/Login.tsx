@@ -59,7 +59,7 @@ export default function SignIn() {
     }
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container maxWidth="xs" >
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -67,7 +67,7 @@ export default function SignIn() {
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign in
-        </Typography>
+                </Typography>
                 <div className={classes.form} >
                     <TextField
                         variant="outlined"

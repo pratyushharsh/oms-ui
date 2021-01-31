@@ -2,9 +2,10 @@ import React from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'; 
 import './OrderSummary.css'
-import { OrderDetail } from "../../model/order";
+import { OrderDetail, ShippingAddress } from "../../model/order";
 import { dateFormatter} from '../../utils/formatter'
 import { Divider } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     orderSummaryTitle: {
@@ -51,12 +52,18 @@ interface OrderSummaryProps {
     orderDetail: OrderDetail
 }
 
-function ShippingAddressComponent() {
-    return (
-        <div>
-            <p>jyg</p>
-            <p>tfygiu</p>
-        </div>);
+interface AddressComponentProps {
+    address: ShippingAddress
+}
+
+function ShippingAddressComponent(props: AddressComponentProps) {
+    return (<>
+        {`${props.address.address1}, ${props.address.address2}`}
+        <br />
+        {`${props.address.city}, ${props.address.state_code}, ${props.address.country_code}`}
+        <br />
+        {`${props.address.phone}`}
+    </>);
 }
 
 function OrderSummary(props: OrderSummaryProps) {
@@ -91,7 +98,8 @@ function OrderSummary(props: OrderSummaryProps) {
         ['Fulfilment Store/WH', '8094'],
         ['Phone Number', props.orderDetail.customer_info.customer_no],
         ['Email', props.orderDetail.customer_info.email],
-        ['Shipping Address', <ShippingAddressComponent />]
+        ['Shipping Address', <ShippingAddressComponent address={props.orderDetail.shipments[0].shipping_address} />],
+        ['Billing Address', <ShippingAddressComponent address={props.orderDetail.shipments[0].shipping_address} />]
     ]
 
     return (

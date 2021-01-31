@@ -119,32 +119,33 @@ function OrderInfo(props : OrderInfoProps) {
                     </div>
                 </Grid>
 
-                <Grid  item xs = {12} lg = {6}>   
+
+                {/* <Grid  item xs = {12} lg = {6}>   
                     <Grid container direction = 'column' spacing = {0} >
                     
                         <Grid item xs = {12}>
                             <Tabs value = {selectedTab} onChange = {handleTabChange}>
-                                {/* <Tab label = 'Order Detail' className = {classes.orderInfoButton} />
-                                <Tab label = 'Sales Detail' className = {classes.orderInfoButton}/> */}
+                                <Tab label = 'Order Detail' className = {classes.orderInfoButton} />
+                                <Tab label = 'Sales Detail' className = {classes.orderInfoButton}/>
                                 <Tab label = 'Shipping Address' className = {classes.orderInfoButton}/>
                                 <Tab label = 'Billing Address' className = {classes.orderInfoButton}/>                       
                             </Tabs> 
                         </Grid>
 
                         <Grid item xs = {12} className = {classes.grid}>
-                            {/* {selectedTab === 0 && <OrderDetailTab orderDetail = {props.orderDetail}/>}
-                            { selectedTab === 1 && <SalesDetailTab orderDetail = {props.orderDetail}/>} */}
+                            {selectedTab === 0 && <OrderDetailTab orderDetail = {props.orderDetail}/>}
+                            { selectedTab === 1 && <SalesDetailTab orderDetail = {props.orderDetail}/>}
                             {selectedTab === 0 &&  <ShipmentDetailTab orderDetail = {props.orderDetail}/>}
                             {selectedTab === 1 &&  <BillingDetailTab orderDetail = {props.orderDetail}/> }
                         </Grid>
 
                     </Grid>
 
-                </Grid>
+                </Grid> */}
 
-                <Grid item xs={12} lg={6}>
+                {/* <Grid item xs={12}>
                     <SearchTable tableName={'Payment Detail'} tableHeader={paymentDetailHeader} tableBody={paymentDetailBody}  />
-                </Grid>
+                </Grid> */}
             </Grid>
             
         </div>

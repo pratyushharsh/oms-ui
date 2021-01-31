@@ -49,10 +49,12 @@ function SearchTable(props: SearchTableProps) {
 
     function onChangePage(event: React.MouseEvent<HTMLButtonElement> | null, page: number) {
         setPage(page);
+        console.log(`Page: ${page}, Row Per Page: ${rowsPerPage}`)
     }
 
     function onChangeRowsPerPage(event: React.ChangeEvent<HTMLInputElement>) {
         setRowsPerPage(Number(event.target.value));
+        console.log(`Page: ${page}, Row Per Page: ${rowsPerPage}`)
     }
 
         return (

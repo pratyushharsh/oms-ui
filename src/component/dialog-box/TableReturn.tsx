@@ -88,7 +88,7 @@ function TableReturn(props: TableReturnProps) {
             })
         },
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            // alert(JSON.stringify(values, null, 2));
         },
     });
 
