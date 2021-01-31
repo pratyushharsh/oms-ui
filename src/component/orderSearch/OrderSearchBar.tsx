@@ -67,7 +67,6 @@ export default function OrderSearch(props: OrderSearchProps) {
         dispatch({
             type: LOADING_SEARCH_RESULT
         });
-        await new Promise(r => setTimeout(r, 1000));
         try {
             var r: OrderSearchResult[] = await searchOrdersApi('ftyud');
             dispatch({

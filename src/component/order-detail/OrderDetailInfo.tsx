@@ -48,8 +48,9 @@ function OrderDetailInfo(props: OrderDetailInfoProps) {
             <OrderTracker  />
             <OrderSummary orderDetail={props.orderDetail} />
             <SearchTable tableName={'ITEM LIST'} tableHeader={['SKU ID', 'Description', 'Unit Price', 'Ordered Qty', 'Returned Qty', 'Sale Price', 'Total Amount']} tableBody={itemTableBody} />
+            <OrderInfo orderDetail={props.orderDetail} />
             <SearchTable tableName={'Payment Detail'} tableHeader={paymentDetailHeader} tableBody={paymentDetailBody} />
-            <OrderInfo orderDetail={props.orderDetail}/>
+            
             
             {/* <SearchTable tableName = {'Shipment Detail'} tableHeader = {['Shipment ID', 'Status', 'Shipment Total', 'Tax', 'No of Items', 'Partner', 'tracking url' ]} tableBody = { shipmentTableBody } /> */}
             {/* <ReactJson src={props.src} /> */}

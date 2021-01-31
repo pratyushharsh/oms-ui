@@ -39,7 +39,6 @@ export const searchOrderDetail = (id: string) => async (dispatch: any) => {
             }
         }
         dispatch(t)
-        await new Promise(r => setTimeout(r, 1000)); 
         //const res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
         const res = await orderDetailApiSearch(id);
         if (!res) {
