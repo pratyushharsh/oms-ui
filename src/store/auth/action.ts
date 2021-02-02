@@ -1,3 +1,4 @@
+import history from "../../history";
 import { AuthActionTypes } from "./types";
 
 
@@ -10,6 +11,7 @@ export const loginUser = (username: string, password: string) => (dispatch: any)
                 role: 'Admin'
             }
         })
+        history.push("/")
     }
 }
 

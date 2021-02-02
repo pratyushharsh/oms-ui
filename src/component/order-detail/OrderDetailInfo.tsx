@@ -8,7 +8,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ReactJson from 'react-json-view'
 import { TextField } from 'material-ui'
 import { OrderDetail } from '../../model/order'
-
+import {makeStyles} from "@material-ui/core/styles";
 
 export interface OrderDetailInfoProps {
     orderDetail: OrderDetail
@@ -22,8 +22,25 @@ function OrderDetailInfo(props: OrderDetailInfoProps) {
 
     const shipmentTableBody = props.orderDetail.shipments.map( (data, idx) => ([data.shipment_id, data.shipping_status, data.shipment_total, data.tax_total, data.seq, data.shipping_method.name, data.c_tracking_link]))
 
-    const paymentDetailBody = props.orderDetail.payment_instruments.map( (data: { c_transactionId: any; amount: any; payment_method_id: any; payment_card: any;  }) => ([data.c_transactionId, data.amount, '2/12', data?.payment_method_id, data?.payment_card?.holder , data?.payment_card?.card_type, data?.payment_card?.masked_number, `${ data?.payment_card?.expiration_month}/${ data?.payment_card?.expiration_year}`]))
+    const paymentDetailHeader = [
+        'Mode',
+        'Card Type',
+        'Number',
+        'Expiration Date',
+        'Holder Name',
+        'Amount',
+        'Date',
+    ]
 
+    const paymentDetailBody = props.orderDetail.payment_instruments.map((data, idx) => ([
+        data?.payment_method_id,
+        data?.payment_card?.card_type,
+        data?.payment_card?.masked_number,
+        `${data?.payment_card?.expiration_month}/${data?.payment_card?.expiration_year}`,
+        data?.payment_card?.holder,
+        data.amount,
+        '2/12',
+    ]))
 
     return (
         <div>
@@ -31,7 +48,9 @@ function OrderDetailInfo(props: OrderDetailInfoProps) {
             <OrderTracker  />
             <OrderSummary orderDetail={props.orderDetail} />
             <SearchTable tableName={'ITEM LIST'} tableHeader={['SKU ID', 'Description', 'Unit Price', 'Ordered Qty', 'Returned Qty', 'Sale Price', 'Total Amount']} tableBody={itemTableBody} />
-            <OrderInfo orderDetail={props.orderDetail}/>
+            <OrderInfo orderDetail={props.orderDetail} />
+            <SearchTable tableName={'Payment Detail'} tableHeader={paymentDetailHeader} tableBody={paymentDetailBody} />
+            
             
             {/* <SearchTable tableName = {'Shipment Detail'} tableHeader = {['Shipment ID', 'Status', 'Shipment Total', 'Tax', 'No of Items', 'Partner', 'tracking url' ]} tableBody = { shipmentTableBody } /> */}
             {/* <ReactJson src={props.src} /> */}

@@ -54,7 +54,8 @@ function TableSelectBox(props: TableSelectBoxProps) {
 }
 
 interface TableReturnProps {
-    orderDetail: OrderDetail
+    orderDetail: OrderDetail;
+    title: string;
 }
 
 function TableReturn(props: TableReturnProps) {
@@ -88,7 +89,7 @@ function TableReturn(props: TableReturnProps) {
             })
         },
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            // alert(JSON.stringify(values, null, 2));
         },
     });
 
@@ -175,7 +176,7 @@ function TableReturn(props: TableReturnProps) {
                 onChange={formik.handleChange}
                 value={formik.values.items[idx].selected}
             />,
-            data.item_id,
+            data.product_id,
             data.item_text,
             <TextField
                 id="outlined-basic"
@@ -197,10 +198,11 @@ function TableReturn(props: TableReturnProps) {
     return (
         <div>
             <form onSubmit = {formik.handleSubmit}>
-            <DialogTable tableName={'Return'}
+            <DialogTable tableName={props.title}
                          tableHeader={['Selected Items', 'SKU ID', 'Description', 'Return', 'Quantity', 'Reason']}
-                    tableBody={tableBody} />
+                    tableBody={tableBody} >
             <Button type='submit' onClick = {handleSubmit}>Submit</Button>
+            </DialogTable>
             </form>
         </div>
     )

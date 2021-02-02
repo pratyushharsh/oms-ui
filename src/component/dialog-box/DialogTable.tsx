@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 interface DialogTableProps {
+    children?: React.ReactNode;
     tableName: string;
     tableHeader: any[];
     tableBody: any[];
     onRowClick?: string;
-    
 }
 
 function DialogTable(props: DialogTableProps) {
@@ -66,6 +66,7 @@ function DialogTable(props: DialogTableProps) {
                         </Table>
                     </TableContainer>
                 </Box>
+                { props.children }
             </Paper>
         </div>
     )

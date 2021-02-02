@@ -160,7 +160,7 @@ function TableCancel(props: TableCancelProps) {
                 onChange={formik.handleChange}
                 value={formik.values.items[idx].selected}
             />,
-            data.item_id,
+            data.product_id,
             data.item_text,
             <TextField
                 id="outlined-basic"

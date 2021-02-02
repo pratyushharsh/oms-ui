@@ -20,11 +20,20 @@ import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
+        paper: {
             padding: '2px 4px',
             display: 'flex',
             alignItems: 'center',
             // width: 400,
+        },
+        root: {
+            display: 'flex',
+            flexWrap: 'wrap',
+            '& > *': {
+                margin: '20px 45px 0 45px',
+                // minWidth: theme.spacing(175),
+
+            },
         },
         input: {
             marginLeft: theme.spacing(1),
@@ -58,7 +67,6 @@ export default function OrderSearch(props: OrderSearchProps) {
         dispatch({
             type: LOADING_SEARCH_RESULT
         });
-        await new Promise(r => setTimeout(r, 1000));
         try {
             var r: OrderSearchResult[] = await searchOrdersApi('ftyud');
             dispatch({
@@ -84,7 +92,6 @@ export default function OrderSearch(props: OrderSearchProps) {
             orderStatus: ''
         },
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2))
             handleSubmit()
             console.log(formik.values);
         },
@@ -92,7 +99,8 @@ export default function OrderSearch(props: OrderSearchProps) {
 
 
     return (
-        <Paper className={classes.root} >
+        <div className={classes.root}>
+        <Paper className={classes.paper} >
             
             
             <form onSubmit={formik.handleSubmit}>
@@ -200,6 +208,7 @@ export default function OrderSearch(props: OrderSearchProps) {
                     </Grid>
                 </Grid>
             </form>
-        </Paper>
+            </Paper>
+        </div>
     );
 }

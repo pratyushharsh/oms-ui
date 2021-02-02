@@ -12,6 +12,15 @@ import { OrderDetail } from '../../model/order';
 
 
 const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > *': {
+            margin: '40px 45px',
+            // minWidth: theme.spacing(175),
+
+        },
+    },
     orderInfoButton : {
         backgroundColor: 'rgb(29, 90, 90)',
         color: 'white',
@@ -27,9 +36,9 @@ const useStyles = makeStyles({
     },
     optionButton :  {
         padding: '25px 10px 10px 15px',
-        fontSize: '20px',
+        fontSize: '16px',
         textTransform: 'uppercase',
-        fontWeight: 500,
+        fontWeight: 400,
         display: 'flex',
         marginBottom: '40px'
     },
@@ -79,7 +88,7 @@ function OrderInfo(props : OrderInfoProps) {
     const classes = useStyles();
 
     return (
-        <div className=" order-info-container">
+        <div className={classes.root}>
             <Grid container spacing={1} >
                 <Grid item xs={12} md={12} lg={12}>
                     <button className="request" >Request</button>
@@ -98,14 +107,19 @@ function OrderInfo(props : OrderInfoProps) {
                                 <input type="radio" name="option" id="cancel" value="cancel" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="cancel" className='option-button-label' >Cancel</label>
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={2}>
                                 <input type="radio" name="option" id="ship" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="ship" className='option-button-label' >Shipping Address</label>
                             </Grid>
 
-                            <Grid item xs={3}>
+                            <Grid item xs={2}>
                                 <input type="radio" name="option" id="delivery" className='option-button-input' onClick={handleOptionChange} />
-                                <label htmlFor="delivery" className='option-button-label' >Change Delivery Date</label>
+                                <label htmlFor="delivery" className='option-button-label' >Change Del Date</label>
+                            </Grid>
+
+                            <Grid item xs={2}>
+                                <input type="radio" name="option" id="priceAdjustment" value="priceAdjustment"  className='option-button-input' onClick={handleOptionChange} />
+                                <label htmlFor="delivery" className='option-button-label' >Price Adjustment</label>
                             </Grid>
                         </Grid>
 
@@ -119,32 +133,33 @@ function OrderInfo(props : OrderInfoProps) {
                     </div>
                 </Grid>
 
-                <Grid  item xs = {12} lg = {6}>   
+
+                {/* <Grid  item xs = {12} lg = {6}>   
                     <Grid container direction = 'column' spacing = {0} >
                     
                         <Grid item xs = {12}>
                             <Tabs value = {selectedTab} onChange = {handleTabChange}>
-                                {/* <Tab label = 'Order Detail' className = {classes.orderInfoButton} />
-                                <Tab label = 'Sales Detail' className = {classes.orderInfoButton}/> */}
+                                <Tab label = 'Order Detail' className = {classes.orderInfoButton} />
+                                <Tab label = 'Sales Detail' className = {classes.orderInfoButton}/>
                                 <Tab label = 'Shipping Address' className = {classes.orderInfoButton}/>
                                 <Tab label = 'Billing Address' className = {classes.orderInfoButton}/>                       
                             </Tabs> 
                         </Grid>
 
                         <Grid item xs = {12} className = {classes.grid}>
-                            {/* {selectedTab === 0 && <OrderDetailTab orderDetail = {props.orderDetail}/>}
-                            { selectedTab === 1 && <SalesDetailTab orderDetail = {props.orderDetail}/>} */}
+                            {selectedTab === 0 && <OrderDetailTab orderDetail = {props.orderDetail}/>}
+                            { selectedTab === 1 && <SalesDetailTab orderDetail = {props.orderDetail}/>}
                             {selectedTab === 0 &&  <ShipmentDetailTab orderDetail = {props.orderDetail}/>}
                             {selectedTab === 1 &&  <BillingDetailTab orderDetail = {props.orderDetail}/> }
                         </Grid>
 
                     </Grid>
 
-                </Grid>
+                </Grid> */}
 
-                <Grid item xs={12} lg={6}>
+                {/* <Grid item xs={12}>
                     <SearchTable tableName={'Payment Detail'} tableHeader={paymentDetailHeader} tableBody={paymentDetailBody}  />
-                </Grid>
+                </Grid> */}
             </Grid>
             
         </div>

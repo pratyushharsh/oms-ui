@@ -32,8 +32,11 @@ function DialogBox(props : DialogBoxProps) {
             </IconButton>
 
             <DialogContent>
-                { optionValue === 'return' && <TableReturn orderDetail = {orderDetail} /> }
+                { optionValue === 'return' && <TableReturn title={`Select Items To Return`} orderDetail = {orderDetail} /> }
                 { optionValue === 'cancel' && <TableCancel orderDetail = {orderDetail} /> }
+                { optionValue === 'exchange' && <TableReturn title={`Select Items To Exchange`} orderDetail = {orderDetail} /> }
+                { optionValue === 'priceAdjustment' && <TableReturn title={`Select Items For Price Adjustment`} orderDetail = {orderDetail} /> }
+
             </DialogContent>
 
             {/* <DialogActions style = {{ margin: '20px' }}>
