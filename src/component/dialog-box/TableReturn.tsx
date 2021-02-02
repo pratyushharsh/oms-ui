@@ -201,8 +201,8 @@ function TableReturn(props: TableReturnProps) {
             <DialogTable tableName={props.title}
                          tableHeader={['Selected Items', 'SKU ID', 'Description', 'Return', 'Quantity', 'Reason']}
                     tableBody={tableBody} >
-            <Button type='submit' onClick = {handleSubmit}>Submit</Button>
             </DialogTable>
+            <Button type='submit' onClick = {handleSubmit}>Submit</Button>
             </form>
         </div>
     )

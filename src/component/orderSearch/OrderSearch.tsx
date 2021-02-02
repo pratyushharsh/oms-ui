@@ -6,6 +6,7 @@ import { ERROR_SEARCHING_ORDER, LOADING_SEARCH_RESULT, OrderSearchResult, Search
 import OrderSearchTable from '../OrderSearchTable';
 import OrderSearchBar from './OrderSearchBar'
 import { Grid } from '@material-ui/core'
+import searchImage from '../../img/orderSearch.svg'
 
 
 function OrderSearch() {
@@ -99,7 +100,8 @@ function OrderSearch() {
 
             {/* <p>{ JSON.stringify(state) }</p> */}
             {/* <p>{ JSON.stringify(state.orders) }</p> */}
-            {state.isLoading ? "Loading Search Result................" : <OrderSearchTable orders={state.orders} />}
+            {/* {state.isLoading ? "Loading Search Result................" <img src= {searchImage}> : <OrderSearchTable orders={state.orders} />} */}
+            {state.isLoading ?  <div style = {{ width: '100%', textAlign: 'center', marginTop: '20px'}}><img src= {searchImage} width="300" height="300" /> </div>: <OrderSearchTable orders={state.orders} />}
         </div>
     )
 }

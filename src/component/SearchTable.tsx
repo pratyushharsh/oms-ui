@@ -75,10 +75,11 @@ function SearchTable(props: SearchTableProps) {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                            {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick) }}/>) }
+                                            {/* {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick) }}/>) } */}
+                                            {props.tableBody.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                            .map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick) }}/>) }
                                     </TableBody>
                                 </Table>
-                            </TableContainer>
                                 <TablePagination
                                     page={ page }
                                     rowsPerPageOptions={[5, 10, 15, 20]}
@@ -87,6 +88,8 @@ function SearchTable(props: SearchTableProps) {
                                     onChangePage={onChangePage}
                                     onChangeRowsPerPage = { onChangeRowsPerPage }
                                 />
+                            </TableContainer>
+                                
                         </Box>
                     </Paper>
                 </Grid>
