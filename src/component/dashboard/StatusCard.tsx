@@ -39,6 +39,7 @@ function StatusCard(props: StatusCardProps) {
                     </div>
                 </Grid>
                 <Grid item xs={6}>
+                    { props.count }
                     <Typography variant={'h6'}>
                         { props.title }
                     </Typography>

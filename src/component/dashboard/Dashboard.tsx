@@ -3,6 +3,7 @@ import MonthlyOrderStatistic from "./MonthlyOrderStatistic";
 import {Grid, Paper, Typography} from "@material-ui/core";
 import AccessAlarmsIcon from '@material-ui/icons/AccessAlarms';
 import StatusCard from "./StatusCard";
+import AmountDisplay from "./AmountDisplay";
 
 function Dashboard() {
     return (
@@ -19,18 +20,21 @@ function Dashboard() {
             <Grid item xs={3}>
                 <StatusCard icon={<AccessAlarmsIcon/>} count={"10"} title={"Cancel"}/>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
                  <MonthlyOrderStatistic />
             </Grid>
-            <Grid item xs={4}>
-                <MonthlyOrderStatistic />
+            <Grid item xs={6}>
+                <AmountDisplay />
             </Grid>
-            <Grid item xs={4}>
-                <MonthlyOrderStatistic />
-            </Grid>
-            <Grid item xs={4}>
-                <MonthlyOrderStatistic />
-            </Grid>
+            {/*<Grid item xs={4}>*/}
+            {/*    <MonthlyOrderStatistic />*/}
+            {/*</Grid>*/}
+            {/*<Grid item xs={4}>*/}
+            {/*    <MonthlyOrderStatistic />*/}
+            {/*</Grid>*/}
+            {/*<Grid item xs={4}>*/}
+            {/*    <MonthlyOrderStatistic />*/}
+            {/*</Grid>*/}
         </Grid>
     )
 }

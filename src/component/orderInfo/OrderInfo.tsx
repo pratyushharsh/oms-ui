@@ -36,9 +36,9 @@ const useStyles = makeStyles({
     },
     optionButton :  {
         padding: '25px 10px 10px 15px',
-        fontSize: '20px',
+        fontSize: '16px',
         textTransform: 'uppercase',
-        fontWeight: 500,
+        fontWeight: 400,
         display: 'flex',
         marginBottom: '40px'
     },
@@ -100,21 +100,26 @@ function OrderInfo(props : OrderInfoProps) {
                                 <label htmlFor="return" className='option-button-label'>Return</label>
                             </Grid>
                             <Grid item xs={2}>
-                                <input type="radio" name="option" id="exchange" value="return" className='option-button-input' onClick={handleOptionChange} />
+                                <input type="radio" name="option" id="exchange" value="exchange" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="exchange" className='option-button-label'>Exchange</label>
                             </Grid>
                             <Grid item xs={2}>
                                 <input type="radio" name="option" id="cancel" value="cancel" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="cancel" className='option-button-label' >Cancel</label>
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={2}>
                                 <input type="radio" name="option" id="ship" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="ship" className='option-button-label' >Shipping Address</label>
                             </Grid>
 
-                            <Grid item xs={3}>
+                            <Grid item xs={2}>
                                 <input type="radio" name="option" id="delivery" className='option-button-input' onClick={handleOptionChange} />
-                                <label htmlFor="delivery" className='option-button-label' >Change Delivery Date</label>
+                                <label htmlFor="delivery" className='option-button-label' >Change Del Date</label>
+                            </Grid>
+
+                            <Grid item xs={2}>
+                                <input type="radio" name="option" id="priceAdjustment" value="priceAdjustment"  className='option-button-input' onClick={handleOptionChange} />
+                                <label htmlFor="delivery" className='option-button-label' >Price Adjustment</label>
                             </Grid>
                         </Grid>
 
