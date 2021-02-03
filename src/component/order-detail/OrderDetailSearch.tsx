@@ -34,6 +34,7 @@ interface OrderDetailSearchProps {
     onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
     onClick?: MouseEventHandler;
     value?: string;
+    
 }
 
 export default function OrderDetailSearch(props: OrderDetailSearchProps) {
@@ -50,6 +51,7 @@ export default function OrderDetailSearch(props: OrderDetailSearchProps) {
                 inputProps={{ 'aria-label': 'search using order id' }}
                 onChange={props.onChange}
                 value={props.value}
+                
             />
             <IconButton type="button" className={classes.iconButton} aria-label="search" onClick={props.onClick}>
                 <SearchIcon />

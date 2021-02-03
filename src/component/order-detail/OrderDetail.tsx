@@ -6,6 +6,7 @@ import { OrderDetailsTabs } from '../../store/order-detail/types';
 import OrderDetailSearch from './OrderDetailSearch';
 import OrderTabs from './OrderTabs';
 import { useLocation } from "react-router-dom";
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 
@@ -17,6 +18,7 @@ function useQuery() {
 function OrderDetail() {
 
     const [orderId, setorderId] = useState('')
+    const [isError, setIsError] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -25,6 +27,12 @@ function OrderDetail() {
     )
 
     const handleSearchOrder = async () => {
+
+        if( orderId === ''){
+            setIsError(true)
+            return 
+        }
+
         const is_order_exist = state.tabs.findIndex(t => t.orderDetail && t.orderDetail.order_no === orderId);
         if (is_order_exist >= 0) {
             dispatch(selectTab(is_order_exist));
@@ -32,6 +40,7 @@ function OrderDetail() {
             dispatch(searchOrderDetail(orderId));
         }
         setorderId('');
+        setIsError(false)
     }
 
     const handleOrderFromQueryParams = async (order_id: string) => {
@@ -59,7 +68,9 @@ function OrderDetail() {
                 value={orderId}
                 onChange={(e) => setorderId(e.target.value)}
                 onClick={handleSearchOrder}
+                
             />
+            { isError === true ? <FormHelperText error>*Please enter a value before searching.</FormHelperText> : ''}
             
             {/* <p>{JSON.stringify(state)}</p> */}
             { state.tabs.length > 0 ? <OrderTabs /> : <p>Search For the orders</p> }
