@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useFormik } from 'formik'
 import { Button } from '@material-ui/core';
+import { cancelReasonCodes } from '../../utils/config';
 
 
 interface TableCheckBoxProps {
@@ -48,15 +49,15 @@ function TableSelectBox(props : TableSelectBoxProps){
         
       >
         
-        <MenuItem value={'Defected1'} >Defected1</MenuItem>
-        <MenuItem value={'Defected2'}>Defected2</MenuItem>
-        <MenuItem value={'Defected3'}>Defected3</MenuItem>
+        {cancelReasonCodes.map(reasonCode => <MenuItem value={`${reasonCode.key}`}>{reasonCode.desc}</MenuItem>)}
+
       </Select> 
     )
 }
 
 interface TableCancelProps {
     orderDetail: OrderDetail
+    title: string;
 }
 
 
@@ -180,8 +181,8 @@ function TableCancel(props: TableCancelProps) {
     return (
         <div>
             <form onSubmit = {formik.handleSubmit}>
-            <DialogTable tableName = {'Cancel'} tableHeader = {['Selected Items','SKU ID', 'Description', 'Cancel', 'Quantity', 'Reason' ]} tableBody = {tableBody} />
-            <Button type='submit' onClick = {handleSubmit}>Submit</Button>
+            <DialogTable tableName = {props.title} tableHeader = {['Selected Items','SKU ID', 'Description', 'Cancel', 'Quantity', 'Reason' ]} tableBody = {tableBody} />
+            <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}>Submit</Button>
             </form>
         </div>
     )

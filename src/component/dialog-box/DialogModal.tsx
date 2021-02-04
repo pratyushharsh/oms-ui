@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
 
-interface DialogBoxProps{
+interface DialogModalProps{
 
     openDialogBox : boolean,
     setOpenDialogBox : any, 
@@ -17,15 +17,18 @@ interface DialogBoxProps{
 
 }
 
-function DialogBox(props : DialogBoxProps) {
+function DialogModal(props : DialogModalProps) {
 
     const { openDialogBox, setOpenDialogBox, optionValue, orderDetail} = props;
 
     return (
         <Dialog open = {openDialogBox} maxWidth = 'lg' style = {{ padding: '0'}}>
-            {/* <DialogTitle style = {{  textTransform: 'capitalize' }}>
-                { optionValue }
-            </DialogTitle> */}
+            <DialogTitle style = {{  textTransform: 'capitalize' }}>
+                { optionValue === 'return' && 'Select items to return' }
+                { optionValue === 'cancel' && 'Select items to cancel'  }
+                { optionValue === 'exchange' && 'Select items to exchange' }
+                { optionValue === 'priceAdjustment' && 'Select items for price adjustment'  }
+            </DialogTitle>
 
             <IconButton onClick = { () => setOpenDialogBox(false)} style = {{ position : 'absolute', right: '4px', top: '4px' }}>
                 <CloseIcon  />
@@ -33,7 +36,7 @@ function DialogBox(props : DialogBoxProps) {
 
             <DialogContent>
                 { optionValue === 'return' && <TableReturn title={`Select Items To Return`} orderDetail = {orderDetail} /> }
-                { optionValue === 'cancel' && <TableCancel title={`Select Items To Cancel`}orderDetail = {orderDetail} /> }
+                { optionValue === 'cancel' && <TableCancel  title={`Select Items To Cancel`} orderDetail = {orderDetail} /> }
                 { optionValue === 'exchange' && <TableReturn title={`Select Items To Exchange`} orderDetail = {orderDetail} /> }
                 { optionValue === 'priceAdjustment' && <TableReturn title={`Select Items For Price Adjustment`} orderDetail = {orderDetail} /> }
 
@@ -48,4 +51,4 @@ function DialogBox(props : DialogBoxProps) {
     )
 }
 
-export default DialogBox
+export default DialogModal

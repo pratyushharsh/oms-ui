@@ -107,7 +107,7 @@ function OrderSummary(props: OrderSummaryProps) {
             
             <Grid container className = {classes.orderSummaryTitle}>
                 <Grid item className = {classes.firstTitle}>
-                    <p>Order Summary</p>
+                    <p>Order Summary :</p>
                 </Grid>
                 <Grid item >
                     <p>{ props.orderDetail.order_no } </p>

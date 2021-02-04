@@ -9,6 +9,7 @@ import ReactJson from 'react-json-view'
 import { TextField } from 'material-ui'
 import { OrderDetail } from '../../model/order'
 import {makeStyles} from "@material-ui/core/styles";
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 export interface OrderDetailInfoProps {
     orderDetail: OrderDetail
@@ -16,7 +17,7 @@ export interface OrderDetailInfoProps {
 
 function OrderDetailInfo(props: OrderDetailInfoProps) {
 
-    const currency = props.orderDetail.currency
+    const currency = getSymbolFromCurrency(props.orderDetail.currency)
 
     const itemTableBody = props.orderDetail.product_items.map((data, idx) => ([data.product_id, data.item_text, `${currency} ${data.base_price}`, data.quantity, 0 , `${currency} ${data.price_after_item_discount}`, `${currency} ${data.quantity * data.price_after_item_discount}`]))
 
@@ -36,9 +37,9 @@ function OrderDetailInfo(props: OrderDetailInfoProps) {
         data?.payment_method_id,
         data?.payment_card?.card_type,
         data?.payment_card?.masked_number,
-        `${data?.payment_card?.expiration_month}/${data?.payment_card?.expiration_year}`,
+        data.payment_card ? `${data?.payment_card?.expiration_month}/${data?.payment_card?.expiration_year}` : '-',
         data?.payment_card?.holder,
-        data.amount,
+        `${currency} ${data.amount}`,
         '2/12',
     ]))
 

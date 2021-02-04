@@ -6,9 +6,12 @@ import ShipmentDetailTab from './orderInfoTabs/ShipmentDetailTab'
 import BillingDetailTab from './orderInfoTabs/BillingDetailTab'
 import SalesDetailTab from './orderInfoTabs/SalesDetailTab'
 import DialogBox from '../dialog-box/DialogBox'
+import DialogModal from '../dialog-box/DialogModal'
 import './OrderInfo.css'
 import SearchTable from '../SearchTable'
 import { OrderDetail } from '../../model/order';
+import TableReturn from '../dialog-box/TableReturn'
+import TableCancel from '../dialog-box/TableCancel'
 
 
 const useStyles = makeStyles({
@@ -87,6 +90,8 @@ function OrderInfo(props : OrderInfoProps) {
 
     const classes = useStyles();
 
+    const {orderDetail} = props;
+
     return (
         <div className={classes.root}>
             <Grid container spacing={1} >
@@ -124,6 +129,18 @@ function OrderInfo(props : OrderInfoProps) {
                         </Grid>
 
                         <DialogBox openDialogBox={openDialogBox} setOpenDialogBox={setOpenDialogBox} optionValue={optionValue} orderDetail={props.orderDetail} />
+                        {/* <DialogModal openDialogBox={openDialogBox} setOpenDialogBox={setOpenDialogBox} optionValue={optionValue} orderDetail={props.orderDetail} /> */}
+                        {/* {
+                            openDialogBox === true ?
+                                 <div  className={classes.modal}>
+                                    { optionValue === 'return' && <TableReturn title={`Select Items To Return`} orderDetail = {orderDetail} /> }
+                                    { optionValue === 'cancel' && <TableCancel orderDetail = {orderDetail} /> }
+                                    { optionValue === 'exchange' && <TableReturn title={`Select Items To Exchange`} orderDetail = {orderDetail} /> }
+                                    { optionValue === 'priceAdjustment' && <TableReturn title={`Select Items For Price Adjustment`} orderDetail = {orderDetail} /> }
+                                 </div>
+                             :
+                                 ''
+                        } */}
 
                         <div className="button-container">
                             <button className="button-cancel">Cancel</button>

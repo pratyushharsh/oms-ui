@@ -8,6 +8,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { useFormik } from 'formik'
 import { Button } from '@material-ui/core';
 import { selectTab } from '../../store/order-detail';
+import { returnReasonCodes } from '../../utils/config';
+
+
 
 interface TableCheckBoxProps {
     name: string,
@@ -45,10 +48,8 @@ function TableSelectBox(props: TableSelectBoxProps) {
             onChange={handleReasonChange}
             name = {name}
         >
-
-            <MenuItem value={'Defected1'}>Defected1</MenuItem>
-            <MenuItem value={'Defected2'}>Defected2</MenuItem>
-            <MenuItem value={'Defected3'}>Defected3</MenuItem>
+            {returnReasonCodes.map(reasonCode => <MenuItem value={`${reasonCode.key}`}>{reasonCode.desc}</MenuItem>)}
+            
         </Select>
     )
 }
@@ -202,7 +203,9 @@ function TableReturn(props: TableReturnProps) {
                          tableHeader={['Selected Items', 'SKU ID', 'Description', 'Return', 'Quantity', 'Reason']}
                     tableBody={tableBody} >
             </DialogTable>
-            <Button type='submit' onClick = {handleSubmit}>Submit</Button>
+            
+            <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}>Submit</Button>
+            
             </form>
         </div>
     )
