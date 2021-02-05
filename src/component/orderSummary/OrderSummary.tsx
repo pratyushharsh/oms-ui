@@ -6,6 +6,7 @@ import { OrderDetail, ShippingAddress } from "../../model/order";
 import { dateFormatter} from '../../utils/formatter'
 import { Divider } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 const useStyles = makeStyles({
     orderSummaryTitle: {
@@ -87,9 +88,9 @@ function OrderSummary(props: OrderSummaryProps) {
         ['Order Type', props.orderDetail._type],
         ['Tracking Url', <a href={props.orderDetail?.shipments[0]?.c_tracking_link} target={'new'}>Track</a>],
         ['Delivery Type', 'Truck Delivery'],
-        ['Payment Due', props.orderDetail.payment_status === 'paid' ? 0 : `${props.orderDetail.currency} ${props.orderDetail.product_total}`],
+        ['Payment Due', props.orderDetail.payment_status === 'paid' ? 0 : `${getSymbolFromCurrency(props.orderDetail.currency)} ${props.orderDetail.product_total}`],
         ['Shipping Type', 'Regular'],
-        ['Order Total', `${props.orderDetail.currency} ${props.orderDetail.product_total}`],
+        ['Order Total', `${getSymbolFromCurrency(props.orderDetail.currency)} ${props.orderDetail.product_total}`],
         ['Delivery Date', dateFormatter(props.orderDetail.creation_date)],
         ['Tax Amount', '0.00'],
         ['Create Date', dateFormatter(props.orderDetail.creation_date)],

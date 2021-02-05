@@ -7,6 +7,7 @@ import { OrderDetail } from '../../model/order';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
+import ShippingAddressModal from './ShippingAddressModal'
 
 interface DialogBoxProps{
 
@@ -36,7 +37,7 @@ function DialogBox(props : DialogBoxProps) {
                 { optionValue === 'cancel' && <TableCancel title={`Select Items To Cancel`}orderDetail = {orderDetail} /> }
                 { optionValue === 'exchange' && <TableReturn title={`Select Items To Exchange`} orderDetail = {orderDetail} /> }
                 { optionValue === 'priceAdjustment' && <TableReturn title={`Select Items For Price Adjustment`} orderDetail = {orderDetail} /> }
-
+                { optionValue === 'ship' && <ShippingAddressModal orderDetail = {orderDetail} />}
             </DialogContent>
 
             {/* <DialogActions style = {{ margin: '20px' }}>
