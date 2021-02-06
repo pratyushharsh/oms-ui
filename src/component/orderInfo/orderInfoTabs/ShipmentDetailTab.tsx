@@ -22,7 +22,7 @@ function ShipmentDetailTab(props: ShipmentDetailTabProps) {
     return (
         <div>
             <Grid container spacing = {2} className = {classes.inputContainer}>
-                <Grid item xs = {6}>
+                {/* <Grid item xs = {6}>
                     <CustomTextField label='Delivery Type' value={props.orderDetail.shipments[0].shipping_address._type} text={ 'Delivery Type' } />
                 </Grid>
                 <Grid item xs = {6}>
@@ -69,7 +69,7 @@ function ShipmentDetailTab(props: ShipmentDetailTabProps) {
                 </Grid>
                 <Grid item xs = {6}>
                     <CustomTextField label='Note' value={''} text={ 'Note' } />
-                </Grid>
+                </Grid> */}
 
             </Grid>
         </div>

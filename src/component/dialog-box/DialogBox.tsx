@@ -34,7 +34,7 @@ function DialogBox(props : DialogBoxProps) {
 
             <DialogContent>
                 { optionValue === 'return' && <TableReturn title={`Select Items To Return`} orderDetail = {orderDetail} /> }
-                { optionValue === 'cancel' && <TableCancel title={`Select Items To Cancel`}orderDetail = {orderDetail} /> }
+                { optionValue === 'cancel' && <TableCancel title={`Select Items To Cancel`} orderDetail = {orderDetail} /> }
                 { optionValue === 'exchange' && <TableReturn title={`Select Items To Exchange`} orderDetail = {orderDetail} /> }
                 { optionValue === 'priceAdjustment' && <TableReturn title={`Select Items For Price Adjustment`} orderDetail = {orderDetail} /> }
                 { optionValue === 'ship' && <ShippingAddressModal orderDetail = {orderDetail} />}

@@ -45,6 +45,11 @@ function DialogTable(props: DialogTableProps) {
 
     
 
+    // if(  props.tableBody.length == 0 ){
+    //     alert('No items to display')
+    // }
+    
+
      return (
         <div className={classes.root}>
             <Paper  style={{ border: 'none', boxShadow: 'none', width: '100%'}}>
@@ -61,7 +66,10 @@ function DialogTable(props: DialogTableProps) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick)  }} />) }
+                                { props.tableBody.length > 0 ?
+                                 props.tableBody.map((t, idx) => <TableRowData key={idx} row={t} onClick={() => { props.onRowClick && eval(props.onRowClick)  }} />) 
+                                                             :
+                                <h5 style = {{ color: '#ff4747'}}>*No items to display</h5>}
                             </TableBody>
                         </Table>
                     </TableContainer>

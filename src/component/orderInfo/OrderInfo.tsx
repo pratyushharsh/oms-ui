@@ -6,7 +6,6 @@ import ShipmentDetailTab from './orderInfoTabs/ShipmentDetailTab'
 import BillingDetailTab from './orderInfoTabs/BillingDetailTab'
 import SalesDetailTab from './orderInfoTabs/SalesDetailTab'
 import DialogBox from '../dialog-box/DialogBox'
-import DialogModal from '../dialog-box/DialogModal'
 import './OrderInfo.css'
 import SearchTable from '../SearchTable'
 import { OrderDetail } from '../../model/order';

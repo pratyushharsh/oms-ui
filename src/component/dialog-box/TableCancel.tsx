@@ -58,6 +58,7 @@ function TableSelectBox(props : TableSelectBoxProps){
 interface TableCancelProps {
     orderDetail: OrderDetail
     title: string;
+    
 }
 
 
@@ -178,9 +179,12 @@ function TableCancel(props: TableCancelProps) {
         ]);
     })
 
+     
+
     return (
         <div>
             <form onSubmit = {formik.handleSubmit}>
+            
             <DialogTable tableName = {props.title} tableHeader = {['Selected Items','SKU ID', 'Description', 'Cancel', 'Quantity', 'Reason' ]} tableBody = {tableBody} />
             <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}>Submit</Button>
             </form>

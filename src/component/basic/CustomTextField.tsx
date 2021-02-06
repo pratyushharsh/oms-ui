@@ -5,10 +5,18 @@ interface CustomTextFieldProps {
     label: string;
     text: string;
     value: string;
+    onChange: any;
+    name: string;
     helperText?: string;
+    
 }
 
+
+
 function CustomTextField(props: CustomTextFieldProps) {
+
+    
+
     return (
         <TextField
             fullWidth
@@ -17,6 +25,9 @@ function CustomTextField(props: CustomTextFieldProps) {
             value= {props.value}
             margin="dense"
             variant="outlined"
+            onChange={props.onChange}
+            name = { props.name}
+            
         />
     )
 }

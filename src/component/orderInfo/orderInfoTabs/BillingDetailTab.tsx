@@ -22,7 +22,7 @@ function BillingDetailTab(props : BillingDetailTabProps) {
     return (
         <div>
             <Grid container spacing = {2} className = {classes.inputContainer}>
-                <Grid item xs = {6}>
+                {/* <Grid item xs = {6}>
                     <CustomTextField label='First Name' value={props.orderDetail.billing_address.first_name} text={ 'First Name' } />
                 </Grid>
                 <Grid item xs = {6}>
@@ -51,7 +51,7 @@ function BillingDetailTab(props : BillingDetailTabProps) {
                 </Grid>
                 <Grid item xs = {6}>
                     <CustomTextField label='Address' value={props.orderDetail.billing_address.c_addressType} text={ 'Address' } />
-                </Grid>
+                </Grid> */}
 
             </Grid>
         </div>
