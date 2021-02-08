@@ -117,13 +117,13 @@ function OrderInfo(props : OrderInfoProps) {
                             </Grid>
 
                             <Grid item xs={2}>
-                                <input type="radio" name="option" id="delivery" className='option-button-input' onClick={handleOptionChange} />
+                                <input type="radio" name="option" id="delivery" value="delivery" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="delivery" className='option-button-label' >Change Del Date</label>
                             </Grid>
 
                             <Grid item xs={2}>
                                 <input type="radio" name="option" id="priceAdjustment" value="priceAdjustment"  className='option-button-input' onClick={handleOptionChange} />
-                                <label htmlFor="delivery" className='option-button-label' >Price Adjustment</label>
+                                <label htmlFor="priceAdjustment" className='option-button-label' >Price Adjustment</label>
                             </Grid>
                         </Grid>
 

@@ -12,6 +12,9 @@ import {VerifyAuthenticated} from "./component/VerifyAuthenticeted";
 import {useSelector} from "react-redux";
 import {RootState} from "./store";
 import { AuthState } from "./store/auth";
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+
 
 import  history from './history';
 
@@ -68,7 +71,7 @@ function App() {
           </main>
       </div>
       </VerifyAuthenticated>
-    </Router>
+      </Router>
   );
 }
 
