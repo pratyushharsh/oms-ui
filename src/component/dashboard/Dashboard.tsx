@@ -16,6 +16,11 @@ const stores = [
     { storeNo: '101', title: '104' }
 ]
 
+const locations = [
+    { locationCode: 'W', locationName: 'Warehouse'},
+    { locationCode: 'S', locationName: 'Store'}
+]
+
 const user = [
     { name: 'Pratyush' },
     { name: 'Sumit Krishnan' },
@@ -35,41 +40,68 @@ const employees = [
 function Dashboard() {
 
     const [selectedDate, handleDateChange] = useState<Date>(new Date());
+    const [orderDate, handleOrderDate] = useState<Date>(new Date());
 
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container spacing={4}>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
                 <Autocomplete
                     fullWidth
                     id="combo-box-stores"
                     options={stores}
                     getOptionLabel={(option) => option.title}
-                    style={{ width: 300 }}
+                    style={{ width: 200 }}
                     renderInput={(params) => <TextField {...params} label="Store No" variant="outlined" />}
                 />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
+                <Autocomplete
+                    fullWidth
+                    id="combo-box-location"
+                    options={locations}
+                    getOptionLabel={(option) => option.locationName}
+                    style={{ width: 200 }}
+                    renderInput={(params) => <TextField {...params} label="Location Type" variant="outlined" />}
+                />
+            </Grid>
+            <Grid item xs={2}>
                 <Autocomplete
                     fullWidth
                     id="combo-box-users"
                     options={user}
                     getOptionLabel={(option) => option.name}
-                    style={{ width: 300 }}
+                    style={{ width: 200 }}
                     renderInput={(params) => <TextField {...params} label="Search By Customer" variant="outlined" />}
                 />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
                 <Autocomplete
                     fullWidth
                     id="combo-box-employee"
                     options={employees}
                     getOptionLabel={(option) => option.name}
-                    style={{ width: 300 }}
+                    style={{ width: 200 }}
                     renderInput={(params) => <TextField {...params} label="Select Employees" variant="outlined" />}
                 />
             </Grid>
-            <Grid item xs={3}>
+
+            <Grid item xs={2}>
+                    <DatePicker
+                        label="Order Date"
+                        inputVariant="outlined"
+                        format="dd/MM/yyyy"
+                        value={orderDate}
+                        onChange={(dt) => {
+                                if (dt) {
+                                    handleOrderDate(dt);
+                                }
+                            }
+                        }
+                    />
+            </Grid>
+
+            <Grid item xs={2}>
                     <DatePicker
                         label="Delivery Date"
                         inputVariant="outlined"
@@ -83,6 +115,8 @@ function Dashboard() {
                         }
                     />
             </Grid>
+
+            
             <Grid item xs={3}>
                 <StatusCard icon={<AccessAlarmsIcon />} count={"10"} title={"Open Order"}/>
             </Grid>

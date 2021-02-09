@@ -87,7 +87,7 @@ function TableCancel(props: TableCancelProps) {
                 return {
                     selected: false,
                     quantity: 0,
-                    reason: ''
+                    reason: cancelReasonCodes[0].key
                 }
             })
         },
@@ -164,6 +164,7 @@ function TableCancel(props: TableCancelProps) {
             />,
             data.product_id,
             data.item_text,
+            <TableSelectBox reason={formik.values.items[idx].reason}  handleReasonChange={formik.handleChange} name={selReason} />,
             <TextField
                 id="outlined-basic"
                 label="Enter no of items"
@@ -173,9 +174,12 @@ function TableCancel(props: TableCancelProps) {
                 name={selQty}
                 onChange={formik.handleChange}
                 value={formik.values.items[idx].quantity}
+                error = { formik.values.items[idx].quantity > data.quantity ? true : false}
             />,
             data.quantity,
-            <TableSelectBox reason={formik.values.items[idx].reason}  handleReasonChange={formik.handleChange} name={selReason} />
+            data.price,
+            formik.values.items[idx].quantity * data.price
+            
         ]);
     })
 
@@ -185,7 +189,7 @@ function TableCancel(props: TableCancelProps) {
         <div>
             <form onSubmit = {formik.handleSubmit}>
             
-            <DialogTable tableName = {props.title} tableHeader = {['Selected Items','SKU ID', 'Description', 'Cancel', 'Quantity', 'Reason' ]} tableBody = {tableBody} />
+            <DialogTable tableName = {props.title} tableHeader = {['Selected Items','SKU ID', 'Description', 'Reason','Cancel Quantity', 'Original Quantity', 'Sold Price', 'Refundable amount'  ]} tableBody = {tableBody} />
             <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}>Submit</Button>
             </form>
         </div>

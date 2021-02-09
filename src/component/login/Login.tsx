@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useDispatch} from "react-redux";
 import {loginUser} from "../../store/auth";
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 function Copyright() {
     return (
@@ -53,9 +54,15 @@ export default function SignIn() {
     const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [logInError, setLogInError] = useState(false);
 
     function handleLogin() {
         dispatch(loginUser(username, password));
+
+        if( username !== 'admin' || password !== '1234'){
+            setLogInError(true);
+        }
+        
     }
 
     return (
@@ -95,6 +102,9 @@ export default function SignIn() {
                         onChange={(event) => {setPassword(event.target.value)}}
                         value={password}
                     />
+
+                    { logInError === true ? <FormHelperText error>*Either the username or the password is incorrect</FormHelperText> : ''}
+
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"

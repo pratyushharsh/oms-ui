@@ -13,6 +13,7 @@ export const loginUser = (username: string, password: string) => (dispatch: any)
         })
         history.push("/")
     }
+    
 }
 
 export const logout = () => (dispatch: any) => {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useState } from 'react'
 import {OrderDetail} from '../../model/order'
 import DialogTable from './DialogTable'
 import TextField from '@material-ui/core/TextField';
@@ -9,6 +9,7 @@ import { useFormik } from 'formik'
 import { Button } from '@material-ui/core';
 import { selectTab } from '../../store/order-detail';
 import { returnReasonCodes } from '../../utils/config';
+import { FaLessThanEqual } from 'react-icons/fa';
 
 
 
@@ -35,7 +36,8 @@ function TableCheckBox(props: TableCheckBoxProps) {
 interface TableSelectBoxProps {
     reason: string,
     handleReasonChange: any,
-    name: string
+    name: string,
+
 }
 
 function TableSelectBox(props: TableSelectBoxProps) {
@@ -85,7 +87,7 @@ function TableReturn(props: TableReturnProps) {
                 return {
                     selected: false,
                     quantity: 0,
-                    reason: ''
+                    reason: returnReasonCodes[0].key
                 }
             })
         },
@@ -170,6 +172,8 @@ function TableReturn(props: TableReturnProps) {
         const selName = `items[${idx}].selected`;
         const selQty = `items[${idx}].quantity`;
         const selReason = `items[${idx}].reason`
+
+        
     
         return ([
             <TableCheckBox
@@ -179,6 +183,7 @@ function TableReturn(props: TableReturnProps) {
             />,
             data.product_id,
             data.item_text,
+            <TableSelectBox reason={formik.values.items[idx].reason} handleReasonChange={formik.handleChange} name={selReason}  />,
             <TextField
                 id="outlined-basic"
                 label="Enter no of items"
@@ -188,11 +193,16 @@ function TableReturn(props: TableReturnProps) {
                 name={selQty}
                 onChange={formik.handleChange}
                 value={formik.values.items[idx].quantity}
+                error = { formik.values.items[idx].quantity > data.quantity ? true : false}
             />,
             data.quantity,
-            <TableSelectBox reason={formik.values.items[idx].reason} handleReasonChange={formik.handleChange} name={selReason}/>
+            data.price,
+            formik.values.items[idx].quantity * data.price
+           
         ]);
     })
+
+    
 
     console.log(formik.values)
 
@@ -200,11 +210,11 @@ function TableReturn(props: TableReturnProps) {
         <div>
             <form onSubmit = {formik.handleSubmit}>
             <DialogTable tableName={props.title}
-                         tableHeader={['Selected Items', 'SKU ID', 'Description', 'Return', 'Quantity', 'Reason']}
+                         tableHeader={['Selected Items', 'SKU ID', 'Description', 'Reason','Return Quantity', 'Original Quantity', 'Sold Price', 'Refundable amount' ]}
                     tableBody={tableBody} >
             </DialogTable>
             
-            <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}>Submit</Button>
+            <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}  >Submit</Button>
             
             </form>
         </div>

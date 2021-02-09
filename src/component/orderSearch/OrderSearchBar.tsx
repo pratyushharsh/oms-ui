@@ -15,6 +15,11 @@ import { ERROR_SEARCHING_ORDER, LOADING_SEARCH_RESULT, OrderSearchResult, SUCCES
 import { searchOrdersApi } from '../../api/orderDetailSearch';
 import Button from '@material-ui/core/Button/Button';
 import { Typography } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { transform } from 'typescript';
 
 
 
@@ -46,6 +51,15 @@ const useStyles = makeStyles((theme: Theme) =>
             height: 28,
             margin: 4,
         },
+        formControl: {
+            minWidth: 250
+
+        },
+        select: {
+            height: 40
+        },
+        
+        
     }),
 );
 
@@ -89,7 +103,7 @@ export default function OrderSearch(props: OrderSearchProps) {
             firstName: '',
             lastName: '',
             customerId: '',
-            orderStatus: ''
+            orderStatus: 'open'
         },
         onSubmit: (values) => {
             handleSubmit()
@@ -131,35 +145,10 @@ export default function OrderSearch(props: OrderSearchProps) {
                             fullWidth
                             id="emailId"
                             label="Email Id"
-                            autoFocus
                             onChange={formik.handleChange}
                             value={formik.values.emailId}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6} md={3}>
-                    <TextField
-                        name="orderId"
-                            variant="outlined"
-                            size='small'
-                        fullWidth
-                        label="Order Id"
-                        autoFocus
-                        onChange={formik.handleChange}
-                        value={formik.values.orderId}
-                    />
-                </Grid>
-                    <Grid item xs={12} sm={6} md={3}>
-                    <TextField
-                        name="customerId"
-                            variant="outlined"
-                            size='small'
-                        fullWidth
-                        label="Customer Id"
-                        autoFocus
-                        onChange={formik.handleChange}
-                        value={formik.values.customerId}
-                    />
-                </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <TextField
                             name="firstName"
@@ -167,7 +156,6 @@ export default function OrderSearch(props: OrderSearchProps) {
                             size='small'
                             fullWidth
                             label="First Name"
-                            autoFocus
                             onChange={formik.handleChange}
                             value={formik.values.firstName}
                         />
@@ -179,23 +167,66 @@ export default function OrderSearch(props: OrderSearchProps) {
                             size='small'
                             fullWidth
                             label="Last Name"
-                            autoFocus
                             onChange={formik.handleChange}
                             value={formik.values.lastName}
                         />
                     </Grid>
+                    
                     <Grid item xs={12} sm={6} md={3}>
+                        <TextField
+                            name="orderId"
+                            variant="outlined"
+                            size='small'
+                            fullWidth
+                            label="Order Id"
+                            onChange={formik.handleChange}
+                            value={formik.values.orderId}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={3}>
+                        <TextField
+                            name="customerId"
+                            variant="outlined"
+                            size='small'
+                            fullWidth
+                            label="Customer Id"
+                            onChange={formik.handleChange}
+                            value={formik.values.customerId}
+                        />
+                    </Grid>
+
+                    {/* <Grid item xs={12} sm={6} md={3}>
                         <TextField
                             name="orderStatus"
                             variant="outlined"
                             size='small'
                             fullWidth
                             label="Order Status"
-                            autoFocus
                             onChange={formik.handleChange}
                             value={formik.values.orderStatus}
                         />
+                    </Grid> */}
+
+                    <Grid item xs={12} sm={6} md={3}>
+                        <FormControl className={classes.formControl} variant="outlined">
+                        <InputLabel   id="orderStatusId">Order Status</InputLabel>
+                        <Select className={classes.select}
+                            fullWidth
+                            value={formik.values.orderStatus}
+                            onChange={formik.handleChange}
+                            name="orderStatus"
+                            labelId="orderStatusId"
+                            label="Order Status"
+                            >
+                            <MenuItem value={'open'}>Open</MenuItem>
+                            <MenuItem value={'inProgress'}>InProgress</MenuItem>
+                            <MenuItem value={'cancelled'}>Cancelled</MenuItem>
+                            <MenuItem value={'close'}>Close</MenuItem>
+                        </Select>
+                        </FormControl>
                     </Grid>
+
                     <Grid item xs={12} sm={6} md={3}>
                         <Button
                             type="submit"
@@ -206,6 +237,7 @@ export default function OrderSearch(props: OrderSearchProps) {
                             Search
                         </Button>
                     </Grid>
+
                 </Grid>
             </form>
             </Paper>

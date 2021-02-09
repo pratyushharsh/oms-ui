@@ -17,6 +17,7 @@ export enum OrderTypeEnum {
 }
 
 export interface OrderSearchResult {
+    
     orderId: string,
     orderDate: Date,
     customerId: string,

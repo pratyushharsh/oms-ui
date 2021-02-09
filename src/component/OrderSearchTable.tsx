@@ -3,6 +3,7 @@ import { OrderSearchResult } from '../store/search/types'
 import SearchTable from './SearchTable'
 import { Link } from 'react-router-dom';
 import { dateFormatter } from '../utils/formatter'
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 interface OrderSearchTableProps {
   orders: OrderSearchResult[]
@@ -21,6 +22,9 @@ function OrderSearchTable(props: OrderSearchTableProps) {
     'AMOUNT DUE'
   ];
   const searchData = props.orders.map((data, idx) => {
+
+    // const currency = getSymbolFromCurrency(data.currency)
+
     return [
       data.orderId,
       data.customerName,
