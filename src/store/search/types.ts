@@ -24,7 +24,8 @@ export interface OrderSearchResult {
     customerName: string;
     orderType: string,
     orderStatus: string,
-    orderTotal: number
+    orderTotal: number,
+    locale: string
 }
 
 export interface SearchState {

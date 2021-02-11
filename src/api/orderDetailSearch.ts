@@ -49,6 +49,7 @@ export async function searchOrdersApi(orderSearchCriteria: string): Promise<Orde
     const result = await axios.request(config);
     if (result.status === 200) {
         const data: any[] = result.data;
+        console.log(data);
         return data.map((t, idx) => {
             return {
                 'orderId': t.order_no,
@@ -57,7 +58,8 @@ export async function searchOrdersApi(orderSearchCriteria: string): Promise<Orde
                 'customerName': t.customer_name,
                 'orderType': t.order_type,
                 'orderStatus': t.order_status,
-                'orderTotal': t.order_total
+                'orderTotal': t.order_total,
+                'locale': t.locale
             }
         });
     } else {

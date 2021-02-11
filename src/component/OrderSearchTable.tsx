@@ -9,6 +9,23 @@ interface OrderSearchTableProps {
   orders: OrderSearchResult[]
 }
 
+const getSymbolFromLocale = (locale: string) => {
+
+    if( locale === 'en_US'){
+      return '$'
+    }
+    else if( locale === 'en_SA'){
+      return '﷼'
+    }
+    else if( locale === '"ar_SA"'){
+      return '﷼'
+    }else{
+      return '$'
+    }
+
+}
+
+
 function OrderSearchTable(props: OrderSearchTableProps) {
 
   const tableHeader = [
@@ -18,12 +35,13 @@ function OrderSearchTable(props: OrderSearchTableProps) {
     'DELIVERY DATE',
     'ORDER TYPE',
     'ORDER STATUS',
+    'TRACKING URL',
     'ORDER TOTAL',
     'AMOUNT DUE'
   ];
   const searchData = props.orders.map((data, idx) => {
 
-    // const currency = getSymbolFromCurrency(data.currency)
+    const currency = getSymbolFromLocale(data.locale)
 
     return [
       data.orderId,
@@ -32,8 +50,9 @@ function OrderSearchTable(props: OrderSearchTableProps) {
       dateFormatter(data.orderDate),
       data.orderType,
       data.orderStatus,
-      data.orderTotal,
-      0.00
+      'https://staging-mumbai.fareye.co/v2/dashboard_44116369102',
+      `${currency} ${data.orderTotal}`,
+      `${currency} 0.00`
     ] 
   })
 
