@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import ShippingAddressModal from './ShippingAddressModal'
 import ChangeDeliveryDateModal from './ChangeDeliveryDate';
 import TablePriceAdjustment from './PriceAdjustment';
+import AddPaymentModal from './AddPaymentModal';
 
 interface DialogBoxProps{
 
@@ -41,6 +42,7 @@ function DialogBox(props : DialogBoxProps) {
                 {optionValue === 'priceAdjustment' && <TablePriceAdjustment title={`Select Items For Price Adjustment`} orderDetail = {orderDetail} /> }
                 {optionValue === 'ship' && <ShippingAddressModal orderDetail={orderDetail} />}
                 {optionValue === 'delivery' && <ChangeDeliveryDateModal orderDetail={orderDetail} />}
+                {optionValue === 'addPayment' && <AddPaymentModal orderDetail={orderDetail} />}
             </DialogContent>
 
             {/* <DialogActions style = {{ margin: '20px' }}>

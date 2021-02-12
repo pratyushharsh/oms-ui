@@ -125,6 +125,10 @@ function OrderInfo(props : OrderInfoProps) {
                                 <input type="radio" name="option" id="priceAdjustment" value="priceAdjustment"  className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="priceAdjustment" className='option-button-label' >Price Adjustment</label>
                             </Grid>
+                            <Grid item xs={2}>
+                                <input type="radio" name="option" id="addPayment" value="addPayment"  className='option-button-input' onClick={handleOptionChange} />
+                                <label htmlFor="addPayment" className='option-button-label' >Add Payment</label>
+                            </Grid>
                         </Grid>
 
                         <DialogBox openDialogBox={openDialogBox} setOpenDialogBox={setOpenDialogBox} optionValue={optionValue} orderDetail={props.orderDetail} />
