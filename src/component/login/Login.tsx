@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 import {useDispatch} from "react-redux";
 import {loginUser} from "../../store/auth";
 import FormHelperText from '@material-ui/core/FormHelperText';
+import history from "../../history";
 
 function Copyright() {
     return (
@@ -55,15 +56,29 @@ export default function SignIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [logInError, setLogInError] = useState(false);
+    
 
     function handleLogin() {
         dispatch(loginUser(username, password));
 
         if( username !== 'admin' || password !== '1234'){
             setLogInError(true);
+            console.log('Error')
         }
         
     }
+
+    useEffect( () => {
+
+        const loggedUserName = localStorage.getItem('username')
+        const loggedUserPassword = localStorage.getItem('password')
+        
+        if( loggedUserName && loggedUserPassword){
+            dispatch(loginUser(loggedUserName, loggedUserPassword));
+        }
+
+    }, [])
+
 
     return (
         <Container maxWidth="xs" >

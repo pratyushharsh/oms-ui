@@ -12,6 +12,8 @@ export const loginUser = (username: string, password: string) => (dispatch: any)
             }
         })
         history.push("/")
+        localStorage.setItem('username', username)
+        localStorage.setItem('password', password)
     }
     
 }

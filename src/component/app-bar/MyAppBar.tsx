@@ -119,6 +119,8 @@ function MyAppBar() {
 
     function handleLogout() {
         dispatch(logout());
+        localStorage.removeItem('username')
+        localStorage.removeItem('password')
     }
 
 

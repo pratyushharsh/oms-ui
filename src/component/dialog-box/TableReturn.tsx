@@ -166,13 +166,13 @@ function TableReturn(props: TableReturnProps) {
         console.table(returned_items)
     }
     
+    
 
     let tableBody = item_can_be_returned.map((data, idx) => {
         
         const selName = `items[${idx}].selected`;
         const selQty = `items[${idx}].quantity`;
         const selReason = `items[${idx}].reason`
-
         
     
         return ([
@@ -193,7 +193,7 @@ function TableReturn(props: TableReturnProps) {
                 name={selQty}
                 onChange={formik.handleChange}
                 value={formik.values.items[idx].quantity}
-                error = { formik.values.items[idx].quantity > data.quantity ? true : false}
+                error = { (formik.values.items[idx].quantity > data.quantity) || (formik.values.items[idx].quantity < 0) ? true : false}
             />,
             data.quantity,
             data.price,
