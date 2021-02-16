@@ -6,10 +6,12 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useFormik } from 'formik'
-import { Button } from '@material-ui/core';
+import { Button, FormHelperText } from '@material-ui/core';
 import { selectTab } from '../../store/order-detail';
 import { returnReasonCodes } from '../../utils/config';
 import { FaLessThanEqual } from 'react-icons/fa';
+import getSymbolFromCurrency from 'currency-symbol-map'
+
 
 
 
@@ -166,14 +168,14 @@ function TableReturn(props: TableReturnProps) {
         console.table(returned_items)
     }
     
-    
+    const currency_symbol = getSymbolFromCurrency(returned_items.c_currency_code)
 
     let tableBody = item_can_be_returned.map((data, idx) => {
         
         const selName = `items[${idx}].selected`;
         const selQty = `items[${idx}].quantity`;
         const selReason = `items[${idx}].reason`
-        
+        // const currency = data.c_currency_code
     
         return ([
             <TableCheckBox
@@ -196,15 +198,29 @@ function TableReturn(props: TableReturnProps) {
                 error = { (formik.values.items[idx].quantity > data.quantity) || (formik.values.items[idx].quantity < 0) ? true : false}
             />,
             data.quantity,
-            data.price,
-            formik.values.items[idx].quantity * data.price
+            `${currency_symbol} ${data.price}`,
+            `${ currency_symbol} ${formik.values.items[idx].quantity * data.price}`
            
         ]);
     })
 
-    
+    const handleButtonDisable = () => {
+
+        const boolean_array = item_can_be_returned.map( (data, idx) => {
+
+            if((formik.values.items[idx].quantity > data.quantity) || (formik.values.items[idx].quantity < 0)){
+                return true
+            }
+            else{
+                return false
+            }
+        })
+
+        return boolean_array.includes(true) ? true : false
+    }
 
     console.log(formik.values)
+    const isButtonDisabled = handleButtonDisable();
 
     return (
         <div>
@@ -214,8 +230,8 @@ function TableReturn(props: TableReturnProps) {
                     tableBody={tableBody} >
             </DialogTable>
             
-            <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}  >Submit</Button>
-            
+            <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}  disabled = {isButtonDisabled} >Submit</Button>
+            { isButtonDisabled === true ? <FormHelperText error>*Please select valid values</FormHelperText> : '' }
             </form>
         </div>
     )
