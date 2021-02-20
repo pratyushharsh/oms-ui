@@ -6,8 +6,9 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useFormik } from 'formik'
-import { Button } from '@material-ui/core';
+import { Button, FormHelperText } from '@material-ui/core';
 import { cancelReasonCodes } from '../../utils/config';
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 
 interface TableCheckBoxProps {
@@ -150,11 +151,15 @@ function TableCancel(props: TableCancelProps) {
         console.table(cancelled_items)
     }
 
+    const currency_symbol = getSymbolFromCurrency(cancelled_items.c_currency_code)
+
     const tableBody = item_can_be_cancelled.map( (data, idx) => {
         
         const selName = `items[${idx}].selected`
         const selQty = `items[${idx}].quantity`
         const selReason = `items[${idx}].reason`
+
+        const errorInRow = (formik.values.items[idx].quantity > data.quantity) || (formik.values.items[idx].quantity < 0) ? true : false
 
         return ([
             <TableCheckBox
@@ -174,23 +179,40 @@ function TableCancel(props: TableCancelProps) {
                 name={selQty}
                 onChange={formik.handleChange}
                 value={formik.values.items[idx].quantity}
-                error = { formik.values.items[idx].quantity > data.quantity ? true : false}
+                error = { errorInRow }
             />,
             data.quantity,
-            data.price,
-            formik.values.items[idx].quantity * data.price
+            `${currency_symbol} ${data.price}`,
+            errorInRow ? 'N.A.' : `${ currency_symbol} ${formik.values.items[idx].quantity * data.price}`
             
         ]);
     })
 
-     
+    const handleButtonDisable = () => {
+
+        const boolean_array = item_can_be_cancelled.map( (data, idx) => {
+
+            if((formik.values.items[idx].quantity > data.quantity) || (formik.values.items[idx].quantity < 0)){
+                return true
+            }
+            else{
+                return false
+            }
+        })
+
+        return boolean_array.includes(true) ? true : false
+    }
+
+    console.log(formik.values)
+    const isButtonDisabled = handleButtonDisable();
 
     return (
         <div>
             <form onSubmit = {formik.handleSubmit}>
             
             <DialogTable tableName = {props.title} tableHeader = {['Selected Items','SKU ID', 'Description', 'Reason','Cancel Quantity', 'Original Quantity', 'Sold Price', 'Refundable amount'  ]} tableBody = {tableBody} />
-            <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}>Submit</Button>
+            <Button type='submit' onClick = {handleSubmit} style = { isButtonDisabled ? { margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90, 0.3)', color: 'white', float: 'right'} : { margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}  disabled = {isButtonDisabled} >Submit</Button>
+            { isButtonDisabled === true ? <FormHelperText error>*Please select valid values</FormHelperText> : '' }
             </form>
         </div>
     )

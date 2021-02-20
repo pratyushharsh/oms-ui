@@ -9,6 +9,7 @@ import { useFormik } from 'formik'
 import { Button } from '@material-ui/core';
 import { selectTab } from '../../store/order-detail';
 import { returnReasonCodes } from '../../utils/config';
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 
 
@@ -85,7 +86,7 @@ function TablePriceAdjustment(props: TableReturnProps) {
                 return {
                     selected: false,
                     quantity: 0,
-                    reason: '',
+                    reason: returnReasonCodes[0].key,
                     adjustedPrice: itm.price
                 }
             })
@@ -165,6 +166,7 @@ function TablePriceAdjustment(props: TableReturnProps) {
         console.table(returned_items)
     }
 
+    const currency_symbol = getSymbolFromCurrency(returned_items.c_currency_code)
 
     let tableBody = item_can_be_returned.map((data, idx) => {
 
@@ -192,10 +194,10 @@ function TablePriceAdjustment(props: TableReturnProps) {
                 onChange={formik.handleChange}
                 value={formik.values.items[idx].quantity}
             />,
-            data.price,
+            `${currency_symbol} ${data.price}`,
             <TextField
                 id="outlined-basic"
-                label="Enter no of items"
+                label="Enter Amount"
                 variant="outlined"
                 size="small"
                 type="number"
@@ -203,7 +205,8 @@ function TablePriceAdjustment(props: TableReturnProps) {
                 onChange={formik.handleChange}
                 value={formik.values.items[idx].adjustedPrice}
             />,
-            (data.price - formik.values.items[idx].adjustedPrice) * formik.values.items[idx].quantity
+            // (data.price - formik.values.items[idx].adjustedPrice) * formik.values.items[idx].quantity
+            `${currency_symbol} ${(data.price - formik.values.items[idx].adjustedPrice) * formik.values.items[idx].quantity}`
         ]);
     })
 

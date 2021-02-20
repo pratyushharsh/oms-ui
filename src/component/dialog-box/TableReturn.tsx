@@ -175,7 +175,8 @@ function TableReturn(props: TableReturnProps) {
         const selName = `items[${idx}].selected`;
         const selQty = `items[${idx}].quantity`;
         const selReason = `items[${idx}].reason`
-        // const currency = data.c_currency_code
+
+        const errorInRow = (formik.values.items[idx].quantity > data.quantity) || (formik.values.items[idx].quantity < 0) ? true : false
     
         return ([
             <TableCheckBox
@@ -195,12 +196,11 @@ function TableReturn(props: TableReturnProps) {
                 name={selQty}
                 onChange={formik.handleChange}
                 value={formik.values.items[idx].quantity}
-                error = { (formik.values.items[idx].quantity > data.quantity) || (formik.values.items[idx].quantity < 0) ? true : false}
+                error = { errorInRow }
             />,
             data.quantity,
             `${currency_symbol} ${data.price}`,
-            `${ currency_symbol} ${formik.values.items[idx].quantity * data.price}`
-           
+            errorInRow ? 'N.A.' : `${ currency_symbol} ${formik.values.items[idx].quantity * data.price}`
         ]);
     })
 
@@ -230,7 +230,7 @@ function TableReturn(props: TableReturnProps) {
                     tableBody={tableBody} >
             </DialogTable>
             
-            <Button type='submit' onClick = {handleSubmit} style = {{ margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}  disabled = {isButtonDisabled} >Submit</Button>
+            <Button type='submit' onClick = {handleSubmit} style = { isButtonDisabled ? { margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90, 0.3)', color: 'white', float: 'right'} : { margin: '15px 0px', fontSize: '14px', backgroundColor: 'rgb(29, 90, 90)', color: 'white', float: 'right'}}  disabled = {isButtonDisabled} >Submit</Button>
             { isButtonDisabled === true ? <FormHelperText error>*Please select valid values</FormHelperText> : '' }
             </form>
         </div>

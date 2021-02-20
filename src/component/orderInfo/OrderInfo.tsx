@@ -98,34 +98,34 @@ function OrderInfo(props : OrderInfoProps) {
                     <button className="request" >Request</button>
                     <div className="request-detail">
 
-                        <Grid container className={classes.optionButton}>
-                            <Grid item xs={2}>
+                        <Grid container className={classes.optionButton} spacing={1}>
+                            <Grid item xs={3}>
                                 <input type="radio" name="option" id="return" value="return" defaultChecked className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="return" className='option-button-label'>Return</label>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={3}>
                                 <input type="radio" name="option" id="exchange" value="exchange" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="exchange" className='option-button-label'>Exchange</label>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={3}>
                                 <input type="radio" name="option" id="cancel" value="cancel" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="cancel" className='option-button-label' >Cancel</label>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={3}>
                                 <input type="radio" name="option" id="ship" value="ship" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="ship" className='option-button-label' >Shipping Address</label>
                             </Grid>
 
-                            <Grid item xs={2}>
+                            <Grid item xs={3} >
                                 <input type="radio" name="option" id="delivery" value="delivery" className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="delivery" className='option-button-label' >Change Del Date</label>
                             </Grid>
 
-                            <Grid item xs={2}>
+                            <Grid item xs={3} >
                                 <input type="radio" name="option" id="priceAdjustment" value="priceAdjustment"  className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="priceAdjustment" className='option-button-label' >Price Adjustment</label>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={3} >
                                 <input type="radio" name="option" id="addPayment" value="addPayment"  className='option-button-input' onClick={handleOptionChange} />
                                 <label htmlFor="addPayment" className='option-button-label' >Add Payment</label>
                             </Grid>
