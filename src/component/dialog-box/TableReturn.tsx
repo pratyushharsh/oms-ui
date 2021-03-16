@@ -12,7 +12,7 @@ import { returnReasonCodes } from '../../utils/config';
 import { FaLessThanEqual } from 'react-icons/fa';
 import getSymbolFromCurrency from 'currency-symbol-map'
 
-
+// File needs to be changed
 
 
 interface TableCheckBoxProps {
